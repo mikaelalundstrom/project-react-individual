@@ -1,1 +1,12 @@
 @import "./App.css";
+
+:root {
+  --color-white: #f1f4e6;
+  --color-black: #1e261c;
+}
+
+* {
+  margin: 0;
+  box-sizing: 0;
+  box-sizing: border-box;
+}
