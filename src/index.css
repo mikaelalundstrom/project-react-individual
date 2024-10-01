@@ -1,12 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap");
+
 @import "./App.css";
+
+/* Component imports*/
+@import "./Components/css/Header.css";
+
+/* Page Imports */
+@import "./Pages/css/LandingPage.css";
 
 :root {
   --color-white: #f1f4e6;
   --color-black: #1e261c;
+  --color-green: #75a588;
+  --color-green-light: #d0e3cc;
+  --color-yellow: #f1d261;
+  --color-yellow-light: #f6f6b9;
+  --color-orange: #d48a2e;
+  --font-body: "Instrument Sans", sans-serif;
+  --font-headings: "Instrument Serif", serif;
+  --font-cursive: "Cedarville Cursive", cursive;
 }
 
 * {
   margin: 0;
   box-sizing: 0;
   box-sizing: border-box;
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  line-height: 160%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page-container {
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.heading-huge {
+  font-size: 12rem;
+  font-family: var(--font-headings);
+  line-height: 1.7;
+  text-align: center;
+  font-weight: 300;
+}
+
+.heading-italic {
+  font-size: 2.5rem;
+  font-family: var(--font-headings);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
 }
