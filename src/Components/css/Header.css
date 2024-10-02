@@ -14,10 +14,11 @@ header {
       a {
         color: inherit;
         font-weight: 600;
+        padding: 0.5rem 0;
         transition: 0.3s all;
 
         &:hover {
-          transform: scale(1.1);
+          transform: translateY(-0.4rem);
         }
 
         .new {
@@ -35,6 +36,23 @@ header {
 
     .icon {
       font-size: 3rem;
+
+      &:hover {
+        animation: jump 0.3s infinite alternate backwards;
+      }
+
+      a {
+        color: inherit;
+      }
     }
+  }
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(0rem);
+  }
+  to {
+    transform: translateY(-0.5rem);
   }
 }

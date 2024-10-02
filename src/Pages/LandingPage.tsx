@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+import EntriesGrid from "../Components/EntriesGrid";
 import Header from "../Components/Header";
+import Button from "../Components/Button";
 
 function LandingPage() {
   return (
@@ -16,7 +19,20 @@ function LandingPage() {
             </section>
           </div>
         </article>
-        <article className="recent-entries"></article>
+        <article className="recent-entries">
+          <div className="page-container">
+            <div className="content">
+              <figure className="stamp orange">
+                <i className="ph ph-island"></i>
+              </figure>
+              <h2 className="heading">Recent Entries</h2>
+              <EntriesGrid />
+              <Link to="/entries">
+                <Button label="All Entries" bgColor="var(--color-orange)" />
+              </Link>
+            </div>
+          </div>
+        </article>
         <article className="write-new"></article>
       </main>
     </>

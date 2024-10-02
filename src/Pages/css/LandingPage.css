@@ -22,4 +22,26 @@
       }
     }
   }
+
+  .recent-entries {
+    background-color: var(--color-green-light);
+    padding: 0 1rem 0 1rem;
+
+    .content {
+      padding: 10rem 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .stamp {
+      position: absolute;
+      left: 0;
+      top: -5rem;
+    }
+
+    a {
+      align-self: center;
+    }
+  }
 }

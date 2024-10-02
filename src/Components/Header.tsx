@@ -20,7 +20,9 @@ function Header({ bgColor, color }: IProps) {
             </Link>
           </nav>
           <figure className="icon">
-            <i className="ph ph-map-pin"></i>
+            <Link to="/">
+              <i className="ph ph-map-pin"></i>
+            </Link>
           </figure>
         </div>
       </div>

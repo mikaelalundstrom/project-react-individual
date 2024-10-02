@@ -1,12 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap");
 
-@import "./App.css";
-
 /* Component imports*/
 @import "./Components/css/Header.css";
+@import "./Components/css/Footer.css";
+@import "./Components/css/EntriesGrid.css";
+@import "./Components/css/EntryCard.css";
+@import "./Components/css/Button.css";
 
 /* Page Imports */
 @import "./Pages/css/LandingPage.css";
+@import "./Pages/css/EntriesPage.css";
 
 :root {
   --color-white: #f1f4e6;
@@ -31,16 +34,30 @@
 body {
   background-color: var(--color-white);
   color: var(--color-black);
-  line-height: 160%;
 }
 
 a {
   text-decoration: none;
 }
 
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+
+  &.small {
+    font-size: 0.75rem;
+  }
+}
+
 .page-container {
   max-width: 70rem;
   margin: 0 auto;
+}
+
+.heading {
+  font-size: 6rem;
+  font-family: var(--font-headings);
+  font-weight: 300;
 }
 
 .heading-huge {
@@ -57,4 +74,40 @@ a {
   font-weight: 300;
   font-style: italic;
   line-height: 1.2;
+}
+
+.heading-card {
+  font-size: 2.25rem;
+  font-family: var(--font-headings);
+  font-weight: 300;
+  text-align: center;
+}
+
+.cursive-card {
+  font-size: 1.5rem;
+  font-family: var(--font-cursive);
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+.stamp {
+  width: 9rem;
+  height: 10rem;
+  background-image: url("./assets/stamp.svg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.green {
+    background-image: url("./assets/stamp-green.svg");
+  }
+
+  &.orange {
+    background-image: url("./assets/stamp-orange.svg");
+  }
+
+  i {
+    color: var(--color-white);
+    font-size: 5.2rem;
+  }
 }

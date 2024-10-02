@@ -1,0 +1,5 @@
+.entries-page {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  padding: 0 1rem 6rem 1rem;
+}
