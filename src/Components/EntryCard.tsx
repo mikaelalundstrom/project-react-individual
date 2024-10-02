@@ -1,31 +1,34 @@
 import { Link } from "react-router-dom";
+import { IEntry } from "../Interfaces";
 
-function EntryCard() {
+interface IProps {
+  entry: IEntry;
+}
+
+function EntryCard({ entry }: IProps) {
   return (
     <>
-      <Link to="/entry/1">
+      <Link to={`/entry/${entry.id}`}>
         <article className="entry-card">
           <div className="left-side">
-            <h3 className="heading-card">The beautiful scenery of Lake Lucerne</h3>
+            <h3 className="heading-card">{entry.title}</h3>
           </div>
 
           <div className="divider"></div>
           <div className="right-side">
             <div className="details">
-              <p>2024/07</p>
+              <p>
+                {entry.date.substring(0, 4)}/{entry.date.substring(5, 7)}
+              </p>
               <figure className="icon">
                 <i className="ph ph-arrow-up-right"></i>
               </figure>
             </div>
             <div className="desc">
               <h4 className="cursive-card">
-                Lucerne, <br /> Switzerland
+                {entry.location.location}, <br /> {entry.location.country}
               </h4>
-              <p className="small">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi provident quam
-                earum aspernatur magni consequatur nam numquam distinctio expedita, dolorem
-                assumenda dolorum cupiditate nesciunt dolore vitae dicta saepe quo quidem.
-              </p>
+              <p className="small">{entry.description}</p>
             </div>
           </div>
         </article>

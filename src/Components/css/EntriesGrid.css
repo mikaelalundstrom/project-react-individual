@@ -65,3 +65,21 @@
     }
   }
 }
+
+.recent-entries .entries-grid {
+  a:nth-of-type(5n + 2) {
+    .entry-card {
+      background-color: var(--color-yellow-light);
+    }
+
+    .right-side .details,
+    .right-side .desc h4 {
+      color: var(--color-green);
+    }
+
+    .right-side .details .icon {
+      background-color: var(--color-green);
+      color: var(--color-green-light);
+    }
+  }
+}

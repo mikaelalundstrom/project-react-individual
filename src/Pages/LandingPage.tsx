@@ -26,7 +26,7 @@ function LandingPage() {
                 <i className="ph ph-island"></i>
               </figure>
               <h2 className="heading">Recent Entries</h2>
-              <EntriesGrid />
+              <EntriesGrid cardLimit={2} />
               <Link to="/entries">
                 <Button label="All Entries" bgColor="var(--color-orange)" />
               </Link>
