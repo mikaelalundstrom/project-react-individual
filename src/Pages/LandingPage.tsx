@@ -33,7 +33,16 @@ function LandingPage() {
             </div>
           </div>
         </article>
-        <article className="write-new"></article>
+        <article className="write-new">
+          <div className="page-container">
+            <div className="content">
+              <h2 className="heading-huge">Document Your Journey</h2>
+              <Link to="/new">
+                <Button label="write a new entry" type="big"></Button>
+              </Link>
+            </div>
+          </div>
+        </article>
       </main>
     </>
   );
