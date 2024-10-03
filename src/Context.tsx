@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IEntry } from "./interfaces";
+import { IEntry } from "./Interfaces";
 
 export const EntriesContext = createContext<{
   entries?: IEntry[];

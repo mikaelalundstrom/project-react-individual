@@ -1,0 +1,105 @@
+.entry-page {
+  background-color: var(--color-white);
+  .intro {
+    padding: 0 1rem;
+
+    .image {
+      width: 100%;
+      position: relative;
+      height: 35rem;
+      border: 1rem solid var(--color-black);
+      border-radius: 0.2rem;
+      background-color: var(--color-black);
+
+      .stamp {
+        position: absolute;
+        top: 4rem;
+        right: 4rem;
+        z-index: 5;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: bottom center;
+      }
+    }
+
+    .edit {
+      padding: 2rem 0 1rem;
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-black);
+        transition: 0.3s all;
+
+        p {
+          font-weight: 600;
+          text-decoration: underline 2px var(--color-black);
+        }
+        i {
+          display: inline-block;
+          font-size: 2rem;
+          text-decoration: none;
+        }
+
+        &:hover {
+          padding-right: 0.5rem;
+        }
+      }
+    }
+
+    .date {
+      margin: 2rem 0 4rem;
+      font-weight: 600;
+      color: var(--color-white);
+      background-color: var(--color-black);
+      padding: 0.25rem 1.5rem;
+      width: max-content;
+      border-radius: 5rem;
+    }
+  }
+
+  .text-body {
+    background-color: var(--color-yellow-light);
+    padding: 4rem 1rem 10rem;
+    .desc {
+      max-width: 58rem;
+      padding: 2rem 0 4rem;
+      p + p {
+        padding-top: 2rem;
+      }
+    }
+  }
+
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .icon {
+      font-size: 3rem;
+    }
+
+    a {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--color-yellow-light);
+      background-color: var(--color-black);
+      padding: 0.5rem 1.5rem;
+      text-transform: capitalize;
+      border-radius: 5rem;
+
+      transition: 0.3s all;
+
+      &:hover {
+        transform: translateY(-0.5rem);
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@
 /* Page Imports */
 @import "./Pages/css/LandingPage.css";
 @import "./Pages/css/EntriesPage.css";
+@import "./Pages/css/EntryPage.css";
 
 :root {
   --color-white: #f1f4e6;
@@ -47,6 +48,11 @@ p {
   &.small {
     font-size: 0.75rem;
   }
+
+  &.article {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
 }
 
 .page-container {
@@ -63,9 +69,16 @@ p {
 .heading-huge {
   font-size: 12rem;
   font-family: var(--font-headings);
-  line-height: 1.7;
+  line-height: 1;
   text-align: center;
   font-weight: 300;
+}
+
+.heading-article {
+  font-size: 8rem;
+  font-family: var(--font-headings);
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 .heading-italic {
@@ -81,6 +94,13 @@ p {
   font-family: var(--font-headings);
   font-weight: 300;
   text-align: center;
+}
+
+.cursive-article {
+  font-size: 4rem;
+  font-family: var(--font-cursive);
+  line-height: 1.2;
+  font-weight: normal;
 }
 
 .cursive-card {
@@ -109,5 +129,14 @@ p {
   i {
     color: var(--color-white);
     font-size: 5.2rem;
+  }
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(0rem);
+  }
+  to {
+    transform: translateY(-0.5rem);
   }
 }

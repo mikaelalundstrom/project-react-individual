@@ -47,12 +47,3 @@ header {
     }
   }
 }
-
-@keyframes jump {
-  from {
-    transform: translateY(0rem);
-  }
-  to {
-    transform: translateY(-0.5rem);
-  }
-}

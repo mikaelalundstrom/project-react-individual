@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 interface IProps {
-  bgColor?: string;
-  color?: string;
+  bgColor: string;
+  color: string;
 }
 
 function Header({ bgColor, color }: IProps) {

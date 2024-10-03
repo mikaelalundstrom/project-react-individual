@@ -3,6 +3,7 @@ import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import { IEntry } from "./Interfaces";
 import { EntriesContext } from "./Context";
+import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <ScrollTopSwitchPage />
       <EntriesContext.Provider value={{ entries, setEntries }}>
         <Outlet />
       </EntriesContext.Provider>

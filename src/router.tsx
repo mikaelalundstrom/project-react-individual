@@ -12,9 +12,8 @@ export const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index element={<LandingPage />} />
       <Route path="entries" element={<EntriesPage />} />
-      <Route path="entry/:id" element={<EntryPage />}>
-        <Route path="edit" element={<EditEntryPage />} />
-      </Route>
+      <Route path="entry/:id" element={<EntryPage />} />
+      <Route path="edit" element={<EditEntryPage />} />
       <Route path="new" element={<NewEntryPage />} />
 
       <Route path="*" element={<NotfoundPage />} />
