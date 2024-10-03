@@ -6,11 +6,13 @@
 @import "./Components/css/EntriesGrid.css";
 @import "./Components/css/EntryCard.css";
 @import "./Components/css/Button.css";
+@import "./Components/css/Form.css";
 
 /* Page Imports */
 @import "./Pages/css/LandingPage.css";
 @import "./Pages/css/EntriesPage.css";
 @import "./Pages/css/EntryPage.css";
+@import "./Pages/css/NewEntryPage.css";
 
 :root {
   --color-white: #f1f4e6;
@@ -58,6 +60,10 @@ p {
 .page-container {
   max-width: 70rem;
   margin: 0 auto;
+
+  &.small {
+    max-width: 46rem;
+  }
 }
 
 .heading {
@@ -138,5 +144,14 @@ p {
   }
   to {
     transform: translateY(-0.5rem);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

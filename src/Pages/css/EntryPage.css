@@ -9,7 +9,7 @@
       height: 35rem;
       border: 1rem solid var(--color-black);
       border-radius: 0.2rem;
-      background-color: var(--color-black);
+      background-color: var(--color-white);
 
       .stamp {
         position: absolute;
@@ -23,6 +23,12 @@
         height: 100%;
         object-fit: cover;
         object-position: bottom center;
+
+        &.placeholder {
+          object-fit: none;
+          object-position: center;
+          opacity: 0.2;
+        }
       }
     }
 

@@ -3,11 +3,21 @@ import Header from "../Components/Header";
 import { useContext, useEffect, useState } from "react";
 import { IEntry } from "../Interfaces";
 import { EntriesContext } from "../Context";
+import ImgPlaceholder from "../Components/ImgPlaceholder";
 
 function EntryPage() {
   const { id } = useParams();
   const { entries } = useContext(EntriesContext);
   const [entry, setEntry] = useState<IEntry>();
+  const [imgLoaded, setImgLoaded] = useState<boolean>(false);
+
+  const handleOnLoad = () => {
+    setImgLoaded(true);
+  };
+
+  useEffect(() => {
+    setImgLoaded(false);
+  }, [entry]);
 
   const formatDesc = (desc: string) => {
     const descParagraphs = desc.split("\n");
@@ -62,7 +72,13 @@ function EntryPage() {
                 <figure className="stamp">
                   <i className={`ph ph-${matchingStamp(entry.location.type!)}`}></i>
                 </figure>
-                <img src={entry.img} alt={entry.location.location} />
+                {!imgLoaded && <ImgPlaceholder />}
+                <img
+                  src={entry.img}
+                  alt={entry.location.location}
+                  onLoad={handleOnLoad}
+                  style={imgLoaded ? { display: "block" } : { display: "none" }}
+                />
               </figure>
               <div className="edit">
                 <Link to="/edit">

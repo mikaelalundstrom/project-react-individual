@@ -1,0 +1,8 @@
+.new-entry {
+  background-color: var(--color-green-light);
+  padding: 0 1rem 10rem 1rem;
+
+  h1 {
+    padding-bottom: 3rem;
+  }
+}

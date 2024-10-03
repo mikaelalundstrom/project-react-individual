@@ -9,18 +9,32 @@ function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
 
   const getEntries = async () => {
+    let entries = getEntriesFromLS();
+    if (entries.length === 0) {
+      entries = await getEntriesFromAPI();
+    }
+    setEntries(sortEntriesByDate(entries));
+  };
+
+  const getEntriesFromAPI = async () => {
     try {
       const response = await fetch(
         "https://mikaelalundstrom.github.io/json-data/travel-journal/entries.json"
       );
       const data = await response.json();
       console.log(data.entries);
-      const sortedEntries = sortEntriesByDate(data.entries);
-
-      setEntries(sortedEntries);
+      return data.entries;
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getEntriesFromLS = () => {
+    return JSON.parse(localStorage.getItem("TJ_entries")!) || [];
+  };
+
+  const setEntriesInLS = (entries: IEntry[]) => {
+    localStorage.setItem("TJ_entries", JSON.stringify(entries));
   };
 
   const sortEntriesByDate = (entries: IEntry[]) => {
@@ -43,13 +57,17 @@ function App() {
     getEntries();
   }, []);
 
+  useEffect(() => {
+    setEntriesInLS(entries);
+  }, [entries]);
+
   return (
     <>
       <ScrollTopSwitchPage />
       <EntriesContext.Provider value={{ entries, setEntries }}>
         <Outlet />
+        <Footer />
       </EntriesContext.Provider>
-      <Footer />
     </>
   );
 }
