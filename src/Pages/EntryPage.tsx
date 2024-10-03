@@ -27,26 +27,29 @@ function EntryPage() {
   const matchingStamp = (locationType: string) => {
     let icon;
     switch (locationType) {
-      case "mountain":
+      case "Mountain":
         icon = "mountains";
         break;
-      case "nature":
+      case "Nature":
         icon = "park";
         break;
-      case "beach/tropical":
+      case "Beach/Tropical":
         icon = "island";
         break;
-      case "culture/heritage":
+      case "Culture/Heritage":
         icon = "castle-turret";
         break;
-      case "city":
+      case "City":
         icon = "buildings";
         break;
-      case "countryside":
+      case "Countryside":
         icon = "farm";
         break;
-      case "sea/ocean":
+      case "Sea/Ocean":
         icon = "waves";
+        break;
+      case "Attraction/Amusement":
+        icon = "balloon";
         break;
       default:
         icon = "map-pin";

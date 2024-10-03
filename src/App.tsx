@@ -13,6 +13,7 @@ function App() {
     if (entries.length === 0) {
       entries = await getEntriesFromAPI();
     }
+    console.log(entries);
     setEntries(sortEntriesByDate(entries));
   };
 
@@ -22,7 +23,6 @@ function App() {
         "https://mikaelalundstrom.github.io/json-data/travel-journal/entries.json"
       );
       const data = await response.json();
-      console.log(data.entries);
       return data.entries;
     } catch (error) {
       console.log(error);

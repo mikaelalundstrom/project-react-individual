@@ -8,6 +8,20 @@
   border-radius: 0.2rem;
   transition: 0.5s all;
 
+  &.notfound {
+    max-width: 34rem;
+
+    .right-side .details,
+    .right-side .desc h4 {
+      color: var(--color-green);
+    }
+
+    .right-side .details .icon {
+      background-color: var(--color-black);
+      color: var(--color-yellow);
+    }
+  }
+
   &:hover {
     transform: translateY(-2rem) rotate(3deg);
   }

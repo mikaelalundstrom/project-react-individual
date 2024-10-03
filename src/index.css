@@ -13,6 +13,7 @@
 @import "./Pages/css/EntriesPage.css";
 @import "./Pages/css/EntryPage.css";
 @import "./Pages/css/NewEntryPage.css";
+@import "./Pages/css/NotfoundPage.css";
 
 :root {
   --color-white: #f1f4e6;

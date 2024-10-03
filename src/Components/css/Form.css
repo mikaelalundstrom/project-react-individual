@@ -28,6 +28,26 @@ form.form {
       border-radius: 0.2rem;
       line-height: 1.6;
       height: 3.5rem;
+
+      &:focus {
+        border: none;
+        outline: 2px solid var(--color-green);
+      }
+    }
+
+    select {
+      appearance: none;
+    }
+    &.select {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: url("../../assets/caret-down.svg");
+        pointer-events: none;
+        bottom: 0.8rem;
+        right: 1.5rem;
+      }
     }
 
     textarea {

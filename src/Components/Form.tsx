@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import FormSelectInput from "./FormSelectInput";
 import FormTextInput from "./FormTextInput";
 
 function Form() {
+  const [locationTypes, setLocationTypes] = useState<string[]>([]);
+  const getLocationTypes = async () => {
+    try {
+      const response = await fetch(
+        "https://mikaelalundstrom.github.io/json-data/travel-journal/location-types.json"
+      );
+      const data = await response.json();
+      setLocationTypes(data.locationTypes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getLocationTypes();
+  }, []);
+
   return (
     <form className="form">
       <FormTextInput
@@ -23,7 +41,7 @@ function Form() {
         label="Continent"
         id="continent"
         placeholder="Select a Continent"
-        options={[]}
+        options={["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]}
       />
       <FormTextInput
         label="Country"
@@ -42,7 +60,7 @@ function Form() {
         label="Location type"
         id="type"
         placeholder="Select Location Type"
-        options={[]}
+        options={locationTypes}
       />
       <div>
         <label htmlFor="date" className="heading-italic">

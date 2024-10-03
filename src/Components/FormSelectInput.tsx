@@ -3,19 +3,20 @@ interface IProps {
   id: string;
   placeholder: string;
   options: string[];
-  className?: string;
 }
 
-function FormSelectInput({ label, id, className, placeholder, options }: IProps) {
+function FormSelectInput({ label, id, placeholder, options }: IProps) {
   return (
-    <div className={className}>
+    <div className="select">
       <label htmlFor={id} className="heading-italic">
         {label}:
       </label>
       <select id={id} name={id}>
         <option value="0">--{placeholder}--</option>
-        {options.map((option) => (
-          <option value={option}>{option}</option>
+        {options.map((option, i) => (
+          <option key={i} value={option}>
+            {option}
+          </option>
         ))}
       </select>
     </div>
