@@ -1,17 +1,21 @@
+type ButtonType = "submit" | "reset" | "button";
+
 interface IProps {
   label: string;
   bgColor?: string;
   color?: string;
   onClick?: () => void;
-  type?: string;
+  className?: string;
+  type?: ButtonType;
 }
 
-function Button({ label, bgColor, color, onClick, type }: IProps) {
+function Button({ label, bgColor, color, onClick, className, type }: IProps) {
   return (
     <button
-      className={`button ${type}`}
+      className={`button ${className}`}
       style={{ color: color, backgroundColor: bgColor }}
       onClick={onClick}
+      type={type}
     >
       {label}
     </button>

@@ -54,10 +54,44 @@ form.form {
       resize: none;
       height: 35rem;
     }
+    &.new-button {
+      button {
+        margin-top: 2rem;
+        align-self: center;
+      }
+    }
 
-    button {
-      margin-top: 2rem;
+    &.edit-buttons {
+      flex-direction: row;
+      justify-content: space-between;
+      button {
+        margin-top: 2rem;
+      }
+    }
+
+    &.submit-msg {
+      padding-top: 2rem;
       align-self: center;
+      text-align: center;
+
+      p {
+        font-size: 1.25rem;
+
+        a {
+          color: var(--color-black);
+          font-weight: 600;
+          display: inline-block;
+          transition: 0.3s all;
+          i {
+            display: inline-block;
+            transform: translateY(2px);
+          }
+
+          &:hover {
+            transform: translateX(0.5rem);
+          }
+        }
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 main.notfound {
   background-color: var(--color-yellow);
-  padding: 5rem 1rem 10rem;
+  padding: 5rem 1rem 12rem;
 
   .content {
     display: flex;

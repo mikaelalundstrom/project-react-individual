@@ -59,6 +59,7 @@ function App() {
 
   useEffect(() => {
     setEntriesInLS(entries);
+    console.log("Updated LS");
   }, [entries]);
 
   return (

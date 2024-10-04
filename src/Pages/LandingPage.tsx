@@ -38,7 +38,7 @@ function LandingPage() {
             <div className="content">
               <h2 className="heading-huge">Document Your Journey</h2>
               <Link to="/new">
-                <Button label="write a new entry" type="big"></Button>
+                <Button label="write a new entry" className="big"></Button>
               </Link>
             </div>
           </div>

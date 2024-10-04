@@ -84,7 +84,7 @@ function EntryPage() {
                 />
               </figure>
               <div className="edit">
-                <Link to="/edit">
+                <Link to={`/edit/${id}`}>
                   <p className="article">Edit Entry</p> <i className="ph ph-pen"></i>
                 </Link>
               </div>

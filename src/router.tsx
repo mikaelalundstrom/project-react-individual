@@ -13,7 +13,7 @@ export const router = createBrowserRouter(
       <Route index element={<LandingPage />} />
       <Route path="entries" element={<EntriesPage />} />
       <Route path="entry/:id" element={<EntryPage />} />
-      <Route path="edit" element={<EditEntryPage />} />
+      <Route path="edit/:id" element={<EditEntryPage />} />
       <Route path="new" element={<NewEntryPage />} />
 
       <Route path="*" element={<NotfoundPage />} />
