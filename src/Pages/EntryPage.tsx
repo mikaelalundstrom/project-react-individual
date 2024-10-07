@@ -98,24 +98,34 @@ function EntryPage() {
                 {entry.location.location}, {entry.location.country}
               </h2>
               <div className="desc">
-                {formatDesc(entry.description).map((paragraph, i) => (
-                  <p key={i} className="article">
-                    {paragraph}
-                  </p>
-                ))}
+                {formatDesc(entry.description).map((paragraph, i) =>
+                  paragraph ? (
+                    <p key={i} className="article">
+                      {paragraph}
+                    </p>
+                  ) : null
+                )}
               </div>
 
               <div className="tags">
-                <figure className="icon">
-                  <i className="ph ph-hash"></i>
-                </figure>
-                <Link to={`/entries/tagged/${entry.location.continent}`}>
-                  {entry.location.continent}
-                </Link>
-                <Link to={`/entries/tagged/${entry.location.country}`}>
-                  {entry.location.country}
-                </Link>
-                <Link to={`/entries/tagged/${entry.location.type}`}>{entry.location.type}</Link>
+                {entry.location.continent! || entry.location.country! || entry.location.type! ? (
+                  <figure className="icon">
+                    <i className="ph ph-hash"></i>
+                  </figure>
+                ) : null}
+                {entry.location.continent ? (
+                  <Link to={`/entries/tagged/${entry.location.continent}`}>
+                    {entry.location.continent}
+                  </Link>
+                ) : null}
+                {entry.location.country ? (
+                  <Link to={`/entries/tagged/${entry.location.country}`}>
+                    {entry.location.country}
+                  </Link>
+                ) : null}
+                {entry.location.type ? (
+                  <Link to={`/entries/tagged/${entry.location.type}`}>{entry.location.type}</Link>
+                ) : null}
               </div>
             </div>
           </div>

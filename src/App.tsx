@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { IEntry } from "./Interfaces";
 import { EntriesContext } from "./Context";
 import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
+import { sortEntriesByDate } from "./helpers";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
@@ -35,22 +36,6 @@ function App() {
 
   const setEntriesInLS = (entries: IEntry[]) => {
     localStorage.setItem("TJ_entries", JSON.stringify(entries));
-  };
-
-  const sortEntriesByDate = (entries: IEntry[]) => {
-    // sorts by newest first
-    const sortedEntries = entries.sort((a, b) => {
-      const dateA = a.date;
-      const dateB = b.date;
-      if (dateA > dateB) {
-        return -1;
-      }
-      if (dateA < dateB) {
-        return 1;
-      }
-      return 0;
-    });
-    return sortedEntries;
   };
 
   useEffect(() => {

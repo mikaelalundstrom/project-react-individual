@@ -1,10 +1,11 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import FormSelectInput from "./FormSelectInput";
 import FormTextInput from "./FormTextInput";
 import { IEntry } from "../Interfaces";
 import { EntriesContext } from "../Context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { sortEntriesByDate, sortNumbers } from "../helpers";
 
 interface IProps {
   entry?: IEntry;
@@ -13,7 +14,10 @@ interface IProps {
 function Form({ entry }: IProps) {
   const [locationTypes, setLocationTypes] = useState<string[]>([]);
   const { entries, setEntries } = useContext(EntriesContext);
-  const [showMsg, setShowMsg] = useState<boolean>(false);
+  const [submitMsg, setSubmitMsg] = useState<boolean>(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<boolean>(false);
+  let newId = useRef(0);
+  const navigate = useNavigate();
 
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,11 +30,8 @@ function Form({ entry }: IProps) {
     const locationType = form.fType.value;
     const date = form.fDate.value;
     const description = form.fDesc.value;
-    console.log(date);
 
     if (entry) {
-      console.log(entries);
-
       const updatedArr = entries!.map((entryToUpdate) => {
         if (entryToUpdate.id === entry.id) {
           entryToUpdate.title = title;
@@ -46,10 +47,46 @@ function Form({ entry }: IProps) {
       });
 
       console.log(updatedArr);
-      setEntries!(updatedArr);
-      setShowMsg(true);
+      setEntries!(sortEntriesByDate(updatedArr));
     } else {
+      const allIds = entries!.map((entry) => entry.id);
+      allIds.sort(sortNumbers);
+      newId.current = allIds[allIds.length - 1] + 1;
+
+      const newEntry: IEntry = {
+        id: newId.current,
+        title: title,
+        img: img,
+        location: {
+          continent: continent,
+          country: country,
+          location: location,
+          type: locationType,
+        },
+        date: date,
+        description: description,
+      };
+      const updatedArr = [...entries!, newEntry];
+      setEntries!(sortEntriesByDate(updatedArr));
+      form.reset();
     }
+    setSubmitMsg(true);
+  };
+
+  const showConfirmDelete = () => {
+    setDeleteConfirm(true);
+  };
+
+  const cancelDelete = () => {
+    setDeleteConfirm(false);
+  };
+
+  const handleDelete = () => {
+    const entrytoDelete = entry;
+    const updatedArr = entries!.filter((entry) => entry.id !== entrytoDelete!.id);
+    console.log(updatedArr);
+    setEntries!(updatedArr);
+    navigate("/entries");
   };
 
   const getLocationTypes = async () => {
@@ -135,12 +172,36 @@ function Form({ entry }: IProps) {
       </div>{" "}
       {entry ? (
         <div className="span-full edit-buttons">
-          <Button
-            label="Delete Entry"
-            color="var(--color-white)"
-            bgColor="var(--color-orange)"
-            type="button"
-          />
+          <div>
+            {!deleteConfirm ? (
+              <Button
+                label="Delete Entry"
+                color="var(--color-white)"
+                bgColor="var(--color-orange)"
+                type="button"
+                onClick={showConfirmDelete}
+              />
+            ) : null}
+
+            {deleteConfirm ? (
+              <div className="confirm-delete">
+                <Button
+                  label="Cancel"
+                  color="var(--color-black)"
+                  bgColor="var(--color-white)"
+                  type="button"
+                  onClick={cancelDelete}
+                />
+                <Button
+                  label="Delete"
+                  color="var(--color-white)"
+                  bgColor="#E1443A"
+                  type="button"
+                  onClick={handleDelete}
+                />
+              </div>
+            ) : null}
+          </div>
           <Button
             label="Update Entry"
             color="var(--color-white)"
@@ -158,7 +219,7 @@ function Form({ entry }: IProps) {
           />
         </div>
       )}
-      {showMsg ? (
+      {submitMsg ? (
         <div className="span-full submit-msg">
           {entry ? (
             <p>
@@ -168,7 +229,12 @@ function Form({ entry }: IProps) {
               </Link>
             </p>
           ) : (
-            <p>New entry created.</p>
+            <p>
+              New entry created.{" "}
+              <Link to={`/entry/${newId.current}`}>
+                See it here <i className="ph-bold ph-arrow-right"></i>
+              </Link>
+            </p>
           )}
         </div>
       ) : null}

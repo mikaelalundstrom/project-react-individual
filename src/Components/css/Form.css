@@ -93,5 +93,10 @@ form.form {
         }
       }
     }
+
+    &.confirm-delete {
+      flex-direction: row;
+      gap: 2rem;
+    }
   }
 }

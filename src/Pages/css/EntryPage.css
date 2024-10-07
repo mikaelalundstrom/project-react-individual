@@ -9,7 +9,7 @@
       height: 35rem;
       border: 1rem solid var(--color-black);
       border-radius: 0.2rem;
-      background-color: var(--color-white);
+      background-color: #c6cabc;
 
       .stamp {
         position: absolute;

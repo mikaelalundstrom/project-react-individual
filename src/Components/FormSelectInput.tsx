@@ -20,7 +20,7 @@ function FormSelectInput({ label, id, placeholder, options, defaultValue }: IPro
         {label}:
       </label>
       <select id={id} name={id} value={selected} onChange={(e) => setSelected(e.target.value)}>
-        <option value="0">--{placeholder}--</option>
+        <option value="">--{placeholder}--</option>
         {options.map((option, i) => (
           <option key={i} value={option}>
             {option}
