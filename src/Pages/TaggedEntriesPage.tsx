@@ -23,7 +23,7 @@ function TaggedEntriesPage() {
     <>
       <Header bgColor="var(--color-orange)" color="var(--color-white)" />
       <main className="entries-page">
-        <section>
+        <section className="entries-section">
           <div className="page-container">
             <article className="entries">
               <h1 className="heading">Journal Entries</h1>

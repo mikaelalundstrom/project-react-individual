@@ -3,6 +3,11 @@
   color: var(--color-white);
 
   .entries-section {
-    padding: 0 1rem 4rem 1rem;
+    padding: 0 1rem 6rem 1rem;
+
+    .entries {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

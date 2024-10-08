@@ -45,7 +45,7 @@ function TagSection() {
   useEffect(() => {
     getLocationTags();
     getLocationTypes();
-  }, []);
+  }, [entries]);
 
   return (
     <section className="tags-section">

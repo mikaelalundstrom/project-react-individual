@@ -1,7 +1,6 @@
 .general {
   a {
     font-weight: 600;
-    font-style: italic;
     font-size: 1.25rem;
     color: var(--color-yellow-light);
     background-color: var(--color-black);
@@ -14,7 +13,8 @@
       color: var(--color-yellow);
     }
     &.country {
-      color: var(--color-yellow-light);
+      color: var(--color-black);
+      background-color: var(--color-yellow);
     }
 
     &:hover {
