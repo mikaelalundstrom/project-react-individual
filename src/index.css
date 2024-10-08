@@ -8,6 +8,7 @@
 @import "./Components/css/Footer.css";
 @import "./Components/css/Form.css";
 @import "./Components/css/FormMsg.css";
+@import "./Components/css/ScrollToTopBtn.css";
 @import "./Components/css/Header.css";
 @import "./Components/css/Tag.css";
 @import "./Components/css/TagCard.css";
@@ -38,6 +39,10 @@
   box-sizing: 0;
   box-sizing: border-box;
   font-family: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

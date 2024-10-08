@@ -80,17 +80,19 @@ function EntryPage() {
                   </figure>
                 ) : null}
                 {entry.location.continent ? (
-                  <Link to={`/entries/tagged/${entry.location.continent}`}>
+                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.continent)}`}>
                     {entry.location.continent}
                   </Link>
                 ) : null}
                 {entry.location.country ? (
-                  <Link to={`/entries/tagged/${entry.location.country}`}>
+                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.country)}`}>
                     {entry.location.country}
                   </Link>
                 ) : null}
                 {entry.location.type ? (
-                  <Link to={`/entries/tagged/${entry.location.type}`}>{entry.location.type}</Link>
+                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.type)}`}>
+                    {entry.location.type}
+                  </Link>
                 ) : null}
               </div>
             </div>

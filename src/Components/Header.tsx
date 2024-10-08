@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ScrollToTopBtn from "./ScrollToTopBtn";
 
 interface IProps {
   bgColor: string;
@@ -8,6 +9,7 @@ interface IProps {
 function Header({ bgColor, color }: IProps) {
   return (
     <header style={{ color: color, backgroundColor: bgColor }}>
+      <ScrollToTopBtn color={bgColor} bgColor={color} />
       <div className="page-container">
         <div className="header">
           <nav>
