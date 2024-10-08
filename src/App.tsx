@@ -2,12 +2,13 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import { IEntry } from "./Interfaces";
-import { EntriesContext } from "./Context";
+import { EntriesContext, ShowMsgContext } from "./Context";
 import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
 import { sortEntriesByDate } from "./helpers";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
+  const [showMsg, setShowMsg] = useState<boolean>(false);
 
   const getEntries = async () => {
     let entries = getEntriesFromLS();
@@ -51,7 +52,9 @@ function App() {
     <>
       <ScrollTopSwitchPage />
       <EntriesContext.Provider value={{ entries, setEntries }}>
-        <Outlet />
+        <ShowMsgContext.Provider value={{ showMsg, setShowMsg }}>
+          <Outlet />
+        </ShowMsgContext.Provider>
         <Footer />
       </EntriesContext.Provider>
     </>

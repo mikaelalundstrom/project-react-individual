@@ -83,3 +83,19 @@
     }
   }
 }
+
+.no-entries-msg {
+  text-align: center;
+  color: var(--color-yellow-light);
+  padding-bottom: 8rem;
+
+  a {
+    color: var(--color-yellow-light);
+    text-decoration: underline 2px solid var(--color-yellow-light);
+    display: inline-block;
+    transition: all 0.3s;
+    &:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+}

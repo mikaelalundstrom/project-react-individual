@@ -1,0 +1,44 @@
+.tags-section {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+  padding: 4rem 1rem 8rem 1rem;
+  p {
+    a {
+      color: var(--color-black);
+      font-weight: 600;
+      text-decoration: underline 2px solid;
+    }
+  }
+
+  .tags {
+    padding-top: 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+
+  .location-type {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .general {
+    background-color: var(--color-yellow-light);
+    border-radius: 0.2rem;
+    padding: 1.5rem;
+
+    .tags-locations {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem 0.5rem;
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      display: block;
+      line-height: 0;
+    }
+  }
+}

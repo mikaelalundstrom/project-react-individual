@@ -6,12 +6,16 @@ import EntryPage from "./Pages/EntryPage";
 import EditEntryPage from "./Pages/EditEntryPage";
 import NewEntryPage from "./Pages/NewEntryPage";
 import NotfoundPage from "./Pages/NotfoundPage";
+import TaggedEntriesPage from "./Pages/TaggedEntriesPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<LandingPage />} />
-      <Route path="entries" element={<EntriesPage />} />
+      <Route path="entries">
+        <Route index element={<EntriesPage />} />
+        <Route path="tagged/:tag" element={<TaggedEntriesPage />} />
+      </Route>
       <Route path="entry/:id" element={<EntryPage />} />
       <Route path="edit/:id" element={<EditEntryPage />} />
       <Route path="new" element={<NewEntryPage />} />

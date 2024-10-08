@@ -19,3 +19,38 @@ export const sortEntriesByDate = (entries: IEntry[]) => {
 export function sortNumbers(a: number, b: number) {
   return a - b;
 }
+
+export const matchingStamp = (locationType: string) => {
+  let icon;
+  switch (locationType) {
+    case "Mountain":
+      icon = "mountains";
+      break;
+    case "Nature":
+      icon = "park";
+      break;
+    case "Beach/Tropical":
+      icon = "island";
+      break;
+    case "Culture/Heritage":
+      icon = "castle-turret";
+      break;
+    case "City":
+      icon = "buildings";
+      break;
+    case "Countryside":
+      icon = "farm";
+      break;
+    case "Sea/Ocean":
+      icon = "waves";
+      break;
+    case "Attraction/Amusement":
+      icon = "balloon";
+      break;
+    default:
+      icon = "map-pin";
+      break;
+  }
+
+  return icon;
+};

@@ -1,0 +1,36 @@
+p.form-msg {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.25rem;
+  background-color: var(--color-yellow-light);
+  color: var(--color-black);
+  padding: 1rem 2rem;
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  a {
+    color: var(--color-black);
+    padding-left: 0.3rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: 0.3s all;
+    text-decoration: underline 2px solid var(--color-black);
+    i {
+      display: inline-block;
+      transform: translateY(2px);
+    }
+
+    &:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+  i.ph-x-circle {
+    cursor: pointer;
+    font-size: 2rem;
+  }
+}

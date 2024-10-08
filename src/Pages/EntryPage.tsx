@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { IEntry } from "../Interfaces";
 import { EntriesContext } from "../Context";
 import ImgPlaceholder from "../Components/ImgPlaceholder";
+import { matchingStamp } from "../helpers";
 
 function EntryPage() {
   const { id } = useParams();
@@ -22,41 +23,6 @@ function EntryPage() {
   const formatDesc = (desc: string) => {
     const descParagraphs = desc.split("\n");
     return descParagraphs;
-  };
-
-  const matchingStamp = (locationType: string) => {
-    let icon;
-    switch (locationType) {
-      case "Mountain":
-        icon = "mountains";
-        break;
-      case "Nature":
-        icon = "park";
-        break;
-      case "Beach/Tropical":
-        icon = "island";
-        break;
-      case "Culture/Heritage":
-        icon = "castle-turret";
-        break;
-      case "City":
-        icon = "buildings";
-        break;
-      case "Countryside":
-        icon = "farm";
-        break;
-      case "Sea/Ocean":
-        icon = "waves";
-        break;
-      case "Attraction/Amusement":
-        icon = "balloon";
-        break;
-      default:
-        icon = "map-pin";
-        break;
-    }
-
-    return icon;
   };
 
   useEffect(() => {

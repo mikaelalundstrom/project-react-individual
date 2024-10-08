@@ -1,17 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap");
 
 /* Component imports*/
-@import "./Components/css/Header.css";
-@import "./Components/css/Footer.css";
+
+@import "./Components/css/Button.css";
 @import "./Components/css/EntriesGrid.css";
 @import "./Components/css/EntryCard.css";
-@import "./Components/css/Button.css";
+@import "./Components/css/Footer.css";
 @import "./Components/css/Form.css";
+@import "./Components/css/FormMsg.css";
+@import "./Components/css/Header.css";
+@import "./Components/css/Tag.css";
+@import "./Components/css/TagCard.css";
+@import "./Components/css/TagSection.css";
 
 /* Page Imports */
-@import "./Pages/css/LandingPage.css";
 @import "./Pages/css/EntriesPage.css";
 @import "./Pages/css/EntryPage.css";
+@import "./Pages/css/LandingPage.css";
 @import "./Pages/css/NewEntryPage.css";
 @import "./Pages/css/NotfoundPage.css";
 
