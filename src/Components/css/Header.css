@@ -31,6 +31,10 @@ header {
             transform: translateY(1px);
           }
         }
+
+        & > i {
+          font-size: 1.5rem;
+        }
       }
     }
 

@@ -20,6 +20,9 @@ function Header({ bgColor, color }: IProps) {
                 New <i className="ph ph-plus"></i>
               </span>
             </Link>
+            <Link to="/profile">
+              <i className="ph-bold ph-user"></i>
+            </Link>
           </nav>
           <figure className="icon">
             <Link to="/">

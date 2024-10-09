@@ -1,0 +1,124 @@
+main.profile-page {
+  background-color: var(--color-orange);
+  padding: 5rem 1rem 12rem;
+
+  h1 {
+    color: var(--color-white);
+  }
+
+  .edit {
+    padding: 0 0 1rem;
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-white);
+      transition: 0.3s all;
+
+      p {
+        font-weight: 600;
+        text-decoration: underline 2px var(--color-white);
+      }
+      i {
+        display: inline-block;
+        font-size: 2rem;
+        text-decoration: none;
+      }
+
+      &:hover {
+        padding-right: 0.5rem;
+      }
+    }
+  }
+
+  .profile {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .profile-header {
+      position: relative;
+      background-color: var(--color-green-light);
+      padding: 2rem;
+      border-radius: 1rem 1rem 0 0;
+      border-bottom: 1px solid var(--color-black);
+
+      &:first-child::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 0;
+        border-left: dashed 2px var(--color-orange);
+      }
+
+      h2 {
+        &.align-right {
+          text-align: right;
+        }
+      }
+    }
+
+    .profile-body {
+      position: relative;
+      background-color: var(--color-white);
+      padding: 2rem;
+      border-radius: 0 0 1rem 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      height: 20rem;
+
+      &:nth-child(3) {
+        background-image: url("../../assets/airplane.svg");
+        background-repeat: no-repeat;
+        background-position: left 2rem bottom 2rem;
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 0;
+          border-left: dashed 2px var(--color-orange);
+        }
+      }
+
+      .info {
+        h3 {
+          font-size: 1.25rem;
+          font-weight: normal;
+        }
+
+        p {
+          font-size: 1.25rem;
+          font-weight: 600;
+        }
+
+        &.right {
+          grid-column: 2/3;
+        }
+
+        &.padding {
+          padding-left: 2rem;
+        }
+      }
+
+      .stamp {
+        align-self: end;
+      }
+
+      .icon {
+        align-self: end;
+        justify-self: end;
+        font-size: 4rem;
+        line-height: 1;
+        transform: translate(0.5rem, 0.5rem);
+      }
+    }
+  }
+}
