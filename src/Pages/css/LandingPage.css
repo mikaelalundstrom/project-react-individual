@@ -11,15 +11,38 @@
       background-color: var(--color-black);
       background-size: 100%;
       background-position: bottom -10rem center;
-      border-radius: 0.2rem;
+      border-radius: var(--border-radius);
       padding: 0 5.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
 
+      @media (max-width: 600px) {
+        aspect-ratio: 3/4;
+        height: auto;
+        padding: 0;
+        background-size: cover;
+        background-position: bottom center;
+      }
+
       h1 {
         line-height: 1;
         text-align: left;
+
+        @media (max-width: 600px) {
+          text-align: center;
+        }
+      }
+
+      h4 {
+        @media (max-width: 600px) {
+          text-align: center;
+          font-size: 2rem;
+        }
+
+        @media (max-width: 450px) {
+          font-size: 1.5rem;
+        }
       }
     }
   }

@@ -5,8 +5,14 @@
   height: 22rem;
   display: flex;
   gap: 2rem;
-  border-radius: 0.2rem;
+  border-radius: var(--border-radius);
   transition: 0.5s all;
+  max-width: 40rem;
+
+  @media (max-width: 400px) {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
 
   &.notfound {
     max-width: 34rem;

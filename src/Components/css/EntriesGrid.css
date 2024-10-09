@@ -4,6 +4,11 @@
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
   a:nth-of-type(5n + 2) {
     .entry-card {
       background-color: var(--color-yellow);

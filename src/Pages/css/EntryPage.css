@@ -8,14 +8,25 @@
       position: relative;
       height: 35rem;
       border: 1rem solid var(--color-black);
-      border-radius: 0.2rem;
+      border-radius: var(--border-radius);
       background-color: #c6cabc;
+
+      @media (max-width: 600px) {
+        aspect-ratio: 1/1;
+        height: auto;
+      }
 
       .stamp {
         position: absolute;
         top: 4rem;
         right: 4rem;
         z-index: 5;
+
+        @media (max-width: 450px) {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
 
       img {

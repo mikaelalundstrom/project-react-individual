@@ -5,7 +5,6 @@ import { IEntry } from "./Interfaces";
 import { EntriesContext, ShowMsgContext } from "./Context";
 import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
 import { sortEntriesByDate } from "./helpers";
-import ScrollToTopBtn from "./Components/ScrollToTopBtn";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
