@@ -7,6 +7,7 @@ import { EntriesContext, ShowMsgContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import { sortEntriesByDate, sortNumbers } from "../helpers";
 import FormMsg from "./FormMsg";
+import FormDateInput from "./FormDateInput";
 
 interface IProps {
   entry?: IEntry;
@@ -163,12 +164,8 @@ function Form({ entry }: IProps) {
           options={locationTypes}
           defaultValue={entry?.location.type}
         />
-        <div>
-          <label htmlFor="fDate" className="heading-italic">
-            Date:<span>*</span>
-          </label>
-          <input type="date" id="fDate" name="fDate" required defaultValue={entry?.date} />
-        </div>
+
+        <FormDateInput label="Date" id="fDate" required={true} defaultValue={entry?.date} />
         <div className="span-full">
           <label htmlFor="fDesc" className="heading-italic">
             Description:<span>*</span>

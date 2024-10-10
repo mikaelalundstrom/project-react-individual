@@ -11,3 +11,12 @@ export interface IEntry {
     type?: string;
   };
 }
+
+export interface IProfile {
+  name?: string;
+  birthday?: string;
+  from?: string;
+  favoriteDestination?: string;
+  dreamDestination?: string;
+  favoriteEntry?: string;
+}

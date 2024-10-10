@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import Header from "../Components/Header";
+import { useContext } from "react";
+import { EntriesContext, ProfileContext } from "../Context";
 
 function ProfilePage() {
+  const { entries } = useContext(EntriesContext);
+  const { profile } = useContext(ProfileContext);
+
   return (
     <>
       <Header color="var(--color-black)" bgColor="var(--color-orange)" />
@@ -25,36 +30,37 @@ function ProfilePage() {
 
               <div className="profile-body">
                 <div className="info">
+                  <h3>Favorite Entry:</h3>
+                  <p>{profile?.favoriteEntry ? profile.favoriteEntry : "N/A"}</p>
+                </div>
+                <div className="info">
                   <h3>From:</h3>
-                  <p>Country, Continent</p>
-                </div>
-                <div className="info">
-                  <h3>Favorite Destination:</h3>
-                  <p>Location, Country</p>
-                </div>
-                <div className="info">
-                  <h3>Entries:</h3>
-                  <p>9</p>
+                  <p>{profile?.from ? profile.from : "N/A"}</p>
                 </div>
 
                 <div className="info">
-                  <h3>Favorite Entry:</h3>
-                  <p>Entry title</p>
+                  <h3>Entries:</h3>
+                  <p>{entries?.length}</p>
+                </div>
+
+                <div className="info">
+                  <h3>Favorite Destination:</h3>
+                  <p>{profile?.favoriteDestination ? profile.favoriteDestination : "N/A"}</p>
                 </div>
                 <div className="info right">
-                  <h3>Dream Destination</h3>
-                  <p>Location, Country</p>
+                  <h3>Dream Destination:</h3>
+                  <p>{profile?.dreamDestination ? profile.dreamDestination : "N/A"}</p>
                 </div>
               </div>
 
               <div className="profile-body">
                 <div className="info">
                   <h3>Name:</h3>
-                  <p>Name Lastname</p>
+                  <p>{profile?.name ? profile.name : "N/A"}</p>
                 </div>
                 <div className="info padding">
                   <h3>BDay:</h3>
-                  <p>JAN 1</p>
+                  <p>{profile?.birthday ? profile.birthday : "N/A"}</p>
                 </div>
                 <figure className="stamp ">
                   <i className="ph ph-globe"></i>

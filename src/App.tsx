@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
-import { IEntry } from "./Interfaces";
-import { EntriesContext, ShowMsgContext } from "./Context";
+import { IEntry, IProfile } from "./Interfaces";
+import { EntriesContext, ProfileContext, ShowMsgContext } from "./Context";
 import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
 import { sortEntriesByDate } from "./helpers";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
+  const [profile, setProfile] = useState<IProfile>({});
   const [showMsg, setShowMsg] = useState<boolean>(false);
 
   const getEntries = async () => {
@@ -52,9 +53,11 @@ function App() {
     <>
       <ScrollTopSwitchPage />
       <EntriesContext.Provider value={{ entries, setEntries }}>
-        <ShowMsgContext.Provider value={{ showMsg, setShowMsg }}>
-          <Outlet />
-        </ShowMsgContext.Provider>
+        <ProfileContext.Provider value={{ profile, setProfile }}>
+          <ShowMsgContext.Provider value={{ showMsg, setShowMsg }}>
+            <Outlet />
+          </ShowMsgContext.Provider>
+        </ProfileContext.Provider>
         <Footer />
       </EntriesContext.Provider>
     </>
