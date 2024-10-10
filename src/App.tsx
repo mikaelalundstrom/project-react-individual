@@ -36,18 +36,33 @@ function App() {
     return JSON.parse(localStorage.getItem("TJ_entries")!) || [];
   };
 
-  const setEntriesInLS = (entries: IEntry[]) => {
+  const setEntriesInLS = () => {
     localStorage.setItem("TJ_entries", JSON.stringify(entries));
+  };
+
+  const getProfileFromLS = () => {
+    const profile = JSON.parse(localStorage.getItem("TJ_profile")!) || {};
+    setProfile(profile);
+  };
+
+  const setProfileInLS = () => {
+    localStorage.setItem("TJ_profile", JSON.stringify(profile));
   };
 
   useEffect(() => {
     getEntries();
+    getProfileFromLS();
   }, []);
 
   useEffect(() => {
-    setEntriesInLS(entries);
-    console.log("Updated LS");
+    setEntriesInLS();
+    console.log("Updated LS (Entries)");
   }, [entries]);
+
+  useEffect(() => {
+    setProfileInLS();
+    console.log("Updated LS (Profile)");
+  }, [profile]);
 
   return (
     <>

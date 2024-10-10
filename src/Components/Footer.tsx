@@ -10,6 +10,7 @@ function Footer() {
             <Link to="/">Home</Link>
             <Link to="/entries">Journal entries</Link>
             <Link to="/new">Write new</Link>
+            <Link to="/profile">Profile</Link>
           </nav>
           <figure className="stamp green">
             <i className="ph ph-mountains"></i>

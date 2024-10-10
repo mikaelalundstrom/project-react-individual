@@ -1,21 +1,50 @@
-import { useContext } from "react";
-import { IProfile } from "../Interfaces";
+import { FormEvent, useContext, useEffect } from "react";
 import FormSelectInput from "./FormSelectInput";
 import FormTextInput from "./FormTextInput";
-import { EntriesContext } from "../Context";
+import { EntriesContext, ProfileContext, ShowMsgContext } from "../Context";
 import FormDateInput from "./FormDateInput";
 import Button from "./Button";
+import FormMsg from "./FormMsg";
 
-interface IProps {
-  profile: IProfile;
-}
-
-function FormEditProfile({ profile }: IProps) {
+function FormEditProfile() {
   const { entries } = useContext(EntriesContext);
+  const { profile, setProfile } = useContext(ProfileContext);
+  const { setShowMsg } = useContext(ShowMsgContext);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const name = form.fName.value;
+    const birthday = form.fBirthday.value;
+    const from = form.fFrom.value;
+    const favoriteDestination = form.fFavoriteDestination.value;
+    const dreamDestination = form.fDreamDestination.value;
+    const favoriteEntry = form.fFavoriteEntry.value;
+
+    if (profile) {
+      const updatedProfile = {
+        name: name,
+        birthday: birthday,
+        from: from,
+        favoriteDestination: favoriteDestination,
+        dreamDestination: dreamDestination,
+        favoriteEntry: favoriteEntry,
+      };
+
+      setProfile!(updatedProfile);
+      setShowMsg!(true);
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      setShowMsg!(false);
+    };
+  }, []);
 
   return (
     <>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <FormTextInput
           label="Name"
           id="fName"
@@ -30,7 +59,7 @@ function FormEditProfile({ profile }: IProps) {
           required={false}
           className="span-full"
           placeholder="Location/country where you're from..."
-          value={profile?.name}
+          value={profile?.from}
         />
         <FormDateInput label="Birthday" id="fBirthday" defaultValue={profile?.birthday} />
         <FormSelectInput
@@ -46,7 +75,7 @@ function FormEditProfile({ profile }: IProps) {
           required={false}
           className="span-full"
           placeholder="Your favorite travel destination..."
-          value={profile?.name}
+          value={profile?.favoriteDestination}
         />
         <FormTextInput
           label="Dream Destination"
@@ -54,7 +83,7 @@ function FormEditProfile({ profile }: IProps) {
           required={false}
           className="span-full"
           placeholder="Your dream travel destination..."
-          value={profile?.name}
+          value={profile?.dreamDestination}
         />
         <div className="span-full new-button">
           <Button
@@ -65,6 +94,7 @@ function FormEditProfile({ profile }: IProps) {
           />
         </div>
       </form>
+      <FormMsg message="Profile Updated." link={`/profile`} />
     </>
   );
 }

@@ -28,7 +28,7 @@ function ProfilePage() {
                 <h2 className="heading-italic">Profile</h2>
               </div>
 
-              <div className="profile-body">
+              <div className="profile-body big">
                 <div className="info">
                   <h3>Favorite Entry:</h3>
                   <p>{profile?.favoriteEntry ? profile.favoriteEntry : "N/A"}</p>
@@ -60,7 +60,11 @@ function ProfilePage() {
                 </div>
                 <div className="info padding">
                   <h3>BDay:</h3>
-                  <p>{profile?.birthday ? profile.birthday : "N/A"}</p>
+                  <p>
+                    {profile?.birthday
+                      ? ` ${profile.birthday.substring(5, 7)}/${profile.birthday.substring(8, 10)}`
+                      : "N/A"}
+                  </p>
                 </div>
                 <figure className="stamp ">
                   <i className="ph ph-globe"></i>
