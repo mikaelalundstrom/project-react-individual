@@ -3,6 +3,7 @@ export interface IEntry {
   title: string;
   description: string;
   img: string;
+  imgPosition: { x: string; y: string };
   date: string;
   location: {
     continent?: string;

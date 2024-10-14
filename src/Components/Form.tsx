@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { sortEntriesByDate, sortNumbers } from "../helpers";
 import FormMsg from "./FormMsg";
 import FormDateInput from "./FormDateInput";
+import ImgPlaceholder from "./ImgPlaceholder";
 
 interface IProps {
   entry?: IEntry;
@@ -22,11 +23,22 @@ function Form({ entry }: IProps) {
   let newIdRef = useRef(0);
   const navigate = useNavigate();
 
+  const [imgLoaded, setImgLoaded] = useState<boolean>(false);
+  const [imgUrl, setImgUrl] = useState<string>("");
+  const [imgXValue, setImgXValue] = useState<string>("");
+  const [imgYValue, setImgYValue] = useState<string>("");
+
+  const handleOnLoad = () => {
+    setImgLoaded(true);
+  };
+
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const title = form.fTitle.value;
     const img = form.fImg.value;
+    const imgPositionX = form.fImgX.value;
+    const imgPositionY = form.fImgY.value;
     const continent = form.fContinent.value;
     const country = form.fCountry.value;
     const location = form.fLocation.value;
@@ -39,6 +51,8 @@ function Form({ entry }: IProps) {
         if (entryToUpdate.id === entry.id) {
           entryToUpdate.title = title;
           entryToUpdate.img = img;
+          entryToUpdate.imgPosition!.x = imgPositionX;
+          entryToUpdate.imgPosition!.y = imgPositionY;
           entryToUpdate.location.continent = continent;
           entryToUpdate.location.country = country;
           entryToUpdate.location.location = location;
@@ -59,6 +73,7 @@ function Form({ entry }: IProps) {
         id: newIdRef.current,
         title: title,
         img: img,
+        imgPosition: { x: imgPositionX, y: imgPositionY },
         location: {
           continent: continent,
           country: country,
@@ -105,7 +120,18 @@ function Form({ entry }: IProps) {
   };
 
   useEffect(() => {
+    setImgLoaded(false);
+    console.log("img url updated");
+  }, [imgUrl]);
+
+  useEffect(() => {
     getLocationTypes();
+    setImgLoaded(false);
+    if (entry) {
+      setImgUrl(entry.img);
+      setImgXValue(entry.imgPosition!.x);
+      setImgYValue(entry.imgPosition!.y);
+    }
   }, [entry]);
 
   useEffect(() => {
@@ -134,7 +160,45 @@ function Form({ entry }: IProps) {
           className="span-full"
           placeholder="e.g. https://www.yourlink/image.png"
           value={entry?.img}
+          setState={setImgUrl}
         />
+        <div className="image-preview">
+          <p>Image Preview:</p>
+          <figure className="image-preview-figure">
+            {!imgLoaded && <ImgPlaceholder />}
+            <img
+              src={imgUrl}
+              alt="Image preview"
+              onLoad={handleOnLoad}
+              style={
+                imgLoaded
+                  ? { display: "block", objectPosition: `${imgXValue} ${imgYValue}` }
+                  : { display: "none" }
+              }
+            />
+          </figure>
+        </div>
+        <div className="image-preview img-position">
+          <FormSelectInput
+            label="Position X"
+            id="fImgX"
+            placeholder="Image Position X"
+            options={["Left", "Center", "Right"]}
+            defaultValue={entry?.imgPosition?.x}
+            setState={setImgXValue}
+          />
+          <FormSelectInput
+            label="Position Y"
+            id="fImgY"
+            placeholder="Image Position Y"
+            options={["Top", "Center", "Bottom"]}
+            defaultValue={entry?.imgPosition?.y}
+            setState={setImgYValue}
+          />
+        </div>
+        <div className="span-full">
+          <hr />
+        </div>
         <FormSelectInput
           label="Continent"
           id="fContinent"

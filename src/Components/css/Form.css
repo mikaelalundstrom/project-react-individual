@@ -69,6 +69,57 @@ form.form {
       }
     }
 
+    &.image-preview {
+      &.img-position {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      p,
+      label.heading-italic {
+        font-family: var(--font-body);
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.6;
+        font-style: normal;
+      }
+      .image-preview-figure {
+        background-color: #c6cabc;
+        border-radius: var(--border-radius);
+        aspect-ratio: 2/1;
+        width: 100%;
+        height: auto;
+        border: 2px solid var(--color-green);
+
+        @media (max-width: 600px) {
+          aspect-ratio: 1;
+        }
+
+        img {
+          aspect-ratio: 2/1;
+          width: 100%;
+          object-fit: cover;
+          object-position: bottom center;
+
+          @media (max-width: 600px) {
+            aspect-ratio: 1;
+          }
+
+          &.placeholder {
+            object-fit: none;
+            object-position: center;
+            transform: scale(0.6);
+            opacity: 0.2;
+          }
+        }
+      }
+    }
+
+    hr {
+      margin-top: 1rem;
+      border: 1px solid var(--color-green);
+    }
+
     &.edit-buttons {
       flex-direction: row;
       justify-content: space-between;

@@ -5,9 +5,10 @@ interface IProps {
   placeholder: string;
   className?: string;
   value?: string;
+  setState?: (value: string) => void;
 }
 
-function FormTextInput({ label, id, required, className, placeholder, value }: IProps) {
+function FormTextInput({ label, id, required, className, placeholder, value, setState }: IProps) {
   return (
     <div className={className}>
       <label htmlFor={id} className="heading-italic">
@@ -20,6 +21,11 @@ function FormTextInput({ label, id, required, className, placeholder, value }: I
         required={required}
         placeholder={placeholder}
         defaultValue={value}
+        onChange={(e) => {
+          if (setState) {
+            setState(e.target.value);
+          }
+        }}
       />
     </div>
   );

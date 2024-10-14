@@ -46,7 +46,14 @@ function EntryPage() {
                   src={entry.img}
                   alt={entry.location.location}
                   onLoad={handleOnLoad}
-                  style={imgLoaded ? { display: "block" } : { display: "none" }}
+                  style={
+                    imgLoaded
+                      ? {
+                          display: "block",
+                          objectPosition: `${entry.imgPosition!.x} ${entry.imgPosition!.y}`,
+                        }
+                      : { display: "none" }
+                  }
                 />
               </figure>
               <div className="edit">

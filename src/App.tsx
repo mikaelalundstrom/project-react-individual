@@ -26,6 +26,9 @@ function App() {
         "https://mikaelalundstrom.github.io/json-data/travel-journal/entries.json"
       );
       const data = await response.json();
+      data.entries.map((entry: IEntry) => {
+        entry.imgPosition = { x: "Center", y: "Bottom" };
+      });
       return data.entries;
     } catch (error) {
       console.log(error);
