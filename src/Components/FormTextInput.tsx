@@ -21,6 +21,7 @@ function FormTextInput({ label, id, required, className, placeholder, value, set
         required={required}
         placeholder={placeholder}
         defaultValue={value}
+        maxLength={75}
         onChange={(e) => {
           if (setState) {
             setState(e.target.value);

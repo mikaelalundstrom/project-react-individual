@@ -14,11 +14,11 @@ function FormEditProfile() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-    const name = form.fName.value;
+    const name = form.fName.value.trim();
     const birthday = form.fBirthday.value;
-    const from = form.fFrom.value;
-    const favoriteDestination = form.fFavoriteDestination.value;
-    const dreamDestination = form.fDreamDestination.value;
+    const from = form.fFrom.value.trim();
+    const favoriteDestination = form.fFavoriteDestination.value.trim();
+    const dreamDestination = form.fDreamDestination.value.trim();
     const favoriteEntry = form.fFavoriteEntry.value;
 
     if (profile) {

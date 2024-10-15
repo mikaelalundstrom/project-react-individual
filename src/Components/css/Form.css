@@ -80,6 +80,7 @@ form.form {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        gap: 2.3rem;
       }
       p,
       label.heading-italic {
@@ -96,9 +97,24 @@ form.form {
         width: 100%;
         height: auto;
         border: 2px solid var(--color-green);
+        position: relative;
 
-        @media (max-width: 600px) {
-          aspect-ratio: 1;
+        .change-img-view {
+          background-color: var(--color-white);
+          padding: 0.2rem 0.5rem;
+          border-radius: 2rem;
+          font-weight: normal;
+          font-style: italic;
+          font-size: 0.8rem;
+          cursor: pointer;
+          position: absolute;
+          bottom: 1rem;
+          right: 1rem;
+
+          i {
+            display: inline-block;
+            transform: translateY(1px);
+          }
         }
 
         img {

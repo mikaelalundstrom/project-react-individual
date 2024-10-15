@@ -31,6 +31,7 @@ function Form({ entry }: IProps) {
   const [imgUrl, setImgUrl] = useState<string>("");
   const [imgXValue, setImgXValue] = useState<string>("");
   const [imgYValue, setImgYValue] = useState<string>("");
+  const [imgDesktopView, setImgDesktopView] = useState<boolean>(true);
 
   const [currentContinent, setCurrentContinent] = useState<string>("");
   const [currentCountries, setCurrentCountries] = useState<string[]>([]);
@@ -42,13 +43,13 @@ function Form({ entry }: IProps) {
   const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
-    const title = form.fTitle.value;
-    const img = form.fImg.value;
+    const title = form.fTitle.value.trim();
+    const img = form.fImg.value.trim();
     const imgPositionX = form.fImgX.value;
     const imgPositionY = form.fImgY.value;
     const continent = form.fContinent.value;
     const country = form.fCountry.value;
-    const location = form.fLocation.value;
+    const location = form.fLocation.value.trim();
     const locationType = form.fType.value;
     const date = form.fDate.value;
     const description = form.fDesc.value;
@@ -209,13 +210,26 @@ function Form({ entry }: IProps) {
               onLoad={handleOnLoad}
               style={
                 imgLoaded
-                  ? { display: "block", objectPosition: `${imgXValue} ${imgYValue}` }
+                  ? {
+                      display: "block",
+                      objectPosition: `${imgXValue} ${imgYValue}`,
+                      aspectRatio: imgDesktopView ? "2/1" : "1",
+                    }
                   : { display: "none" }
               }
             />
+            {imgLoaded ? (
+              <p className="change-img-view" onClick={() => setImgDesktopView((prev) => !prev)}>
+                {imgDesktopView ? "Mobile " : "Desktop "}view{" "}
+                <i className="ph ph-arrows-clockwise"></i>
+              </p>
+            ) : null}
           </figure>
         </div>
-        <div className="image-preview img-position">
+        <div
+          className="image-preview img-position"
+          style={{ justifyContent: imgDesktopView ? "space-between" : "flex-start" }}
+        >
           <FormSelectInput
             label="Position X"
             id="fImgX"
@@ -281,6 +295,7 @@ function Form({ entry }: IProps) {
             id="fDesc"
             required
             placeholder="Write something about your journey..."
+            maxLength={20000}
             defaultValue={entry?.description}
           ></textarea>
         </div>
