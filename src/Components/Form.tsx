@@ -14,6 +14,10 @@ interface IProps {
   entry?: IEntry;
 }
 
+interface ICountry {
+  name: { common: string };
+}
+
 function Form({ entry }: IProps) {
   const [locationTypes, setLocationTypes] = useState<string[]>([]);
   const { entries, setEntries } = useContext(EntriesContext);
@@ -27,6 +31,9 @@ function Form({ entry }: IProps) {
   const [imgUrl, setImgUrl] = useState<string>("");
   const [imgXValue, setImgXValue] = useState<string>("");
   const [imgYValue, setImgYValue] = useState<string>("");
+
+  const [currentContinent, setCurrentContinent] = useState<string>("");
+  const [currentCountries, setCurrentCountries] = useState<string[]>([]);
 
   const handleOnLoad = () => {
     setImgLoaded(true);
@@ -119,9 +126,36 @@ function Form({ entry }: IProps) {
     }
   };
 
+  const getCountriesByContinent = async (continent: string) => {
+    try {
+      if (continent) {
+        let response;
+        if (continent.includes("America")) {
+          response = await fetch(
+            `https://restcountries.com/v3.1/subregion/${continent}?fields=name`
+          );
+        } else {
+          response = await fetch(
+            `https://restcountries.com/v3.1/region/${continent}?fields=name,independent`
+          );
+        }
+
+        const data = await response.json();
+        const countries = data.map((country: ICountry) => country.name.common).sort();
+        console.log(countries);
+        setCurrentCountries(countries);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCountriesByContinent(currentContinent);
+  }, [currentContinent]);
+
   useEffect(() => {
     setImgLoaded(false);
-    console.log("img url updated");
   }, [imgUrl]);
 
   useEffect(() => {
@@ -131,6 +165,9 @@ function Form({ entry }: IProps) {
       setImgUrl(entry.img);
       setImgXValue(entry.imgPosition!.x);
       setImgYValue(entry.imgPosition!.y);
+      if (entry.location.continent) {
+        setCurrentContinent(entry.location.continent);
+      }
     }
   }, [entry]);
 
@@ -186,6 +223,7 @@ function Form({ entry }: IProps) {
             options={["Left", "Center", "Right"]}
             defaultValue={entry?.imgPosition?.x}
             setState={setImgXValue}
+            disabled={imgUrl ? false : true}
           />
           <FormSelectInput
             label="Position Y"
@@ -194,6 +232,7 @@ function Form({ entry }: IProps) {
             options={["Top", "Center", "Bottom"]}
             defaultValue={entry?.imgPosition?.y}
             setState={setImgYValue}
+            disabled={imgUrl ? false : true}
           />
         </div>
         <div className="span-full">
@@ -205,14 +244,17 @@ function Form({ entry }: IProps) {
           placeholder="Select a Continent"
           options={["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]}
           defaultValue={entry?.location.continent}
+          setState={setCurrentContinent}
         />
-        <FormTextInput
+        <FormSelectInput
           label="Country"
           id="fCountry"
-          required={false}
-          placeholder="Enter country name..."
-          value={entry?.location.country}
+          placeholder="Select a Country"
+          options={currentCountries}
+          defaultValue={entry?.location.country}
+          disabled={currentContinent ? false : true}
         />
+
         <FormTextInput
           label="Location"
           id="fLocation"

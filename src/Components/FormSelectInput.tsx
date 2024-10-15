@@ -7,9 +7,18 @@ interface IProps {
   options: string[];
   defaultValue?: string;
   setState?: (value: string) => void;
+  disabled?: boolean;
 }
 
-function FormSelectInput({ label, id, placeholder, options, defaultValue, setState }: IProps) {
+function FormSelectInput({
+  label,
+  id,
+  placeholder,
+  options,
+  defaultValue,
+  setState,
+  disabled,
+}: IProps) {
   const [selected, setSelected] = useState<string | undefined>(defaultValue);
   useEffect(() => {
     setSelected(defaultValue);
@@ -23,6 +32,7 @@ function FormSelectInput({ label, id, placeholder, options, defaultValue, setSta
       <select
         id={id}
         name={id}
+        disabled={disabled}
         value={selected}
         onChange={(e) => {
           setSelected(e.target.value);

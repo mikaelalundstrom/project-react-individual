@@ -1,6 +1,6 @@
 form.form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   gap: 2rem;
 
   @media (max-width: 600px) {
@@ -45,6 +45,12 @@ form.form {
 
     select {
       appearance: none;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
     }
     &.select {
       position: relative;
