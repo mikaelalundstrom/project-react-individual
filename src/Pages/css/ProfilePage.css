@@ -38,6 +38,10 @@ article.profile-section {
     display: grid;
     grid-template-columns: 2fr 1fr;
 
+    @media (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
+
     .profile-header {
       position: relative;
       background-color: var(--color-green-light);
@@ -45,7 +49,19 @@ article.profile-section {
       border-radius: 1rem 1rem 0 0;
       border-bottom: 0.25rem solid var(--color-green);
 
-      &:first-child::after {
+      &.profile {
+        @media (max-width: 700px) {
+          grid-row: 1 / 2;
+        }
+      }
+
+      &.general {
+        @media (max-width: 700px) {
+          grid-row: 3 / 4;
+        }
+      }
+
+      &.general::after {
         content: "";
         position: absolute;
         top: 0;
@@ -71,15 +87,20 @@ article.profile-section {
       grid-template-columns: 1fr 1fr;
       min-height: 20rem;
 
-      &.big {
-        gap: 0 2rem;
-        grid-template-rows: 1fr 1fr 1fr;
+      @media (max-width: 700px) {
+        margin-bottom: 2rem;
       }
 
-      &:nth-child(3) {
+      &.general {
+        gap: 0 2rem;
+        grid-template-rows: 1fr 1fr 1fr;
         background-image: url("../../assets/airplane.svg");
         background-repeat: no-repeat;
         background-position: left 2rem bottom 2rem;
+
+        @media (max-width: 700px) {
+          grid-row: 4 / 5;
+        }
 
         &:after {
           content: "";
@@ -89,6 +110,12 @@ article.profile-section {
           height: 100%;
           width: 0;
           border-left: dashed 2px var(--color-orange);
+        }
+      }
+
+      &.profile {
+        @media (max-width: 700px) {
+          grid-row: 2 / 3;
         }
       }
 
@@ -147,6 +174,11 @@ article.statistics {
       background-color: var(--color-yellow-light);
       border-radius: var(--border-radius);
       padding: 2rem;
+      transition: 0.3s all;
+
+      &:hover {
+        transform: translateY(-1rem);
+      }
     }
 
     p {
@@ -175,6 +207,13 @@ article.statistics {
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+
+      @media (max-width: 1000px) {
+        grid-column: span 2;
+      }
+      @media (max-width: 550px) {
+        grid-column: span 6;
+      }
     }
 
     .words {
@@ -184,6 +223,13 @@ article.statistics {
       gap: 0.5rem;
       background-color: var(--color-black);
       color: var(--color-white);
+
+      @media (max-width: 1000px) {
+        grid-column: span 4;
+      }
+      @media (max-width: 550px) {
+        grid-column: span 6;
+      }
 
       p {
         font-style: italic;
@@ -198,6 +244,14 @@ article.statistics {
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+
+      @media (max-width: 1000px) {
+        grid-column: span 3;
+      }
+
+      @media (max-width: 800px) {
+        grid-column: span 6;
+      }
     }
 
     .continents,
@@ -206,10 +260,59 @@ article.statistics {
       grid-column: span 3;
       text-align: center;
 
+      @media (max-width: 800px) {
+        grid-column: span 6;
+      }
+
       .graph {
         display: flex;
         justify-content: center;
         gap: 1rem;
+
+        &.horizontal {
+          @media (max-width: 500px) {
+            display: none;
+          }
+        }
+
+        &.vertical {
+          flex-direction: column;
+          display: none;
+
+          @media (max-width: 500px) {
+            display: flex;
+          }
+
+          a {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+          }
+          .graph-item {
+            width: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            .bar {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: flex-start;
+
+              p {
+                padding-left: 0.7rem;
+              }
+            }
+
+            .label {
+              height: auto;
+              width: 6rem;
+              text-align: right;
+            }
+          }
+        }
 
         a {
           display: flex;
@@ -253,7 +356,7 @@ article.statistics {
 
       .graph-label {
         font-weight: 600;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
       }
     }
 
@@ -268,9 +371,26 @@ article.statistics {
       justify-content: space-between;
       background-color: var(--color-yellow);
 
+      @media (max-width: 800px) {
+        grid-column: span 6;
+      }
+
       figure {
         font-size: 5rem;
         line-height: 0;
+      }
+    }
+
+    .year {
+      @media (max-width: 1000px) {
+        grid-column: span 2;
+      }
+      @media (max-width: 550px) {
+        grid-column: span 6;
+      }
+
+      p {
+        line-height: 1.4;
       }
     }
   }

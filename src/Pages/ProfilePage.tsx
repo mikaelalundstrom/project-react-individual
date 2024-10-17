@@ -41,7 +41,7 @@ function ProfilePage() {
         return entry.location.continent;
       }
     });
-    setContinentCount(countFrequency(continents!));
+    setContinentCount(countFrequency(continents!.sort()));
   };
 
   const getCountryFrequency = () => {
@@ -50,7 +50,7 @@ function ProfilePage() {
         return entry.location.country;
       }
     });
-    setCountryCount(countFrequency(countries!));
+    setCountryCount(countFrequency(countries!.sort()));
   };
 
   const countFrequency = (array: (string | undefined)[]) => {
@@ -58,7 +58,6 @@ function ProfilePage() {
     array!.forEach((item) => {
       item ? (counts[item] = (counts[item] || 0) + 1) : null;
     });
-
     return counts;
   };
 
@@ -68,7 +67,6 @@ function ProfilePage() {
         return entry.location.type;
       }
     });
-
     return getMostCommon(locationTypes!);
   };
 
@@ -76,7 +74,6 @@ function ProfilePage() {
     const years = entries?.map((entry) => {
       return entry.date.substring(0, 4);
     });
-
     return getMostCommon(years!);
   };
 
@@ -110,15 +107,13 @@ function ProfilePage() {
                 </Link>
               </div>
               <article className="profile">
-                <div className="profile-header">
+                <div className="profile-header general">
                   <h2 className="heading-italic align-right">Travel Journal</h2>
                 </div>
-
-                <div className="profile-header">
+                <div className="profile-header personal">
                   <h2 className="heading-italic">Profile</h2>
                 </div>
-
-                <div className="profile-body big">
+                <div className="profile-body big general">
                   <div className="info">
                     <h3>Favorite Entry:</h3>
                     <p>{profile?.favoriteEntry ? profile.favoriteEntry : "N/A"}</p>
@@ -127,12 +122,10 @@ function ProfilePage() {
                     <h3>From:</h3>
                     <p>{profile?.from ? profile.from : "N/A"}</p>
                   </div>
-
                   <div className="info">
                     <h3>Entries:</h3>
                     <p>{entries?.length}</p>
                   </div>
-
                   <div className="info">
                     <h3>Favorite Destination:</h3>
                     <p>{profile?.favoriteDestination ? profile.favoriteDestination : "N/A"}</p>
@@ -142,8 +135,7 @@ function ProfilePage() {
                     <p>{profile?.dreamDestination ? profile.dreamDestination : "N/A"}</p>
                   </div>
                 </div>
-
-                <div className="profile-body">
+                <div className="profile-body personal">
                   <div className="info">
                     <h3>Name:</h3>
                     <p>{profile?.name ? profile.name : "N/A"}</p>
@@ -170,6 +162,7 @@ function ProfilePage() {
             </div>
           </div>
         </article>
+
         <article className="statistics">
           <div className="page-container">
             <h2 className="heading">Statistics</h2>
@@ -182,10 +175,15 @@ function ProfilePage() {
                 <p className="big italic">{entries ? getTotalWordCount() : null} words</p>
                 <p>in total written across all entries.</p>
               </div>
-              <div className="date-entry stat-item">
+              <Link
+                className="date-entry stat-item"
+                to={`/entry/${
+                  entries && entries.length !== 0 ? entries[entries.length - 1].id : null
+                }`}
+              >
                 <p className="big">{entries ? getEarliestEntryDate() : null}</p>
                 <p>the date of your earliest entry.</p>
-              </div>
+              </Link>
               <div className="continents stat-item">
                 <p className="graph-label">Entries per Continent</p>
                 <Graph obj={continentCount} />
@@ -203,17 +201,22 @@ function ProfilePage() {
                   ></i>
                 </figure>
               </Link>
-              <div className="date-entry latest stat-item">
+              <Link
+                className="date-entry latest stat-item"
+                to={`/entry/${entries && entries.length !== 0 ? entries[0].id : null}`}
+              >
                 <p className="big">
-                  {entries ? entries[0]?.date.replaceAll("-", "/").substring(2) : null}
+                  {entries && entries.length !== 0
+                    ? entries[0].date.replaceAll("-", "/").substring(2)
+                    : null}
                 </p>
                 <p>the date of your latest entry.</p>
-              </div>
+              </Link>
               <div className="words stat-item">
                 <p className="big italic">{entries ? getTotalCharacterCount() : null} characters</p>
                 <p>in total written across all entries.</p>
               </div>
-              <div className="stat-item">
+              <div className="year stat-item">
                 <p>
                   You wrote the most entries for
                   <span className="bold"> {getMostCommonYear()}.</span>
