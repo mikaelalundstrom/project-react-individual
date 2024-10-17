@@ -25,6 +25,9 @@ function App() {
       const response = await fetch(
         "https://mikaelalundstrom.github.io/json-data/travel-journal/entries.json"
       );
+      if (!response.ok) {
+        throw new Error("Something went wrong while fetching entries");
+      }
       const data = await response.json();
       data.entries.map((entry: IEntry) => {
         entry.imgPosition = { x: "Center", y: "Bottom" };

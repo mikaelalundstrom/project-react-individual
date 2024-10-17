@@ -120,6 +120,9 @@ function Form({ entry }: IProps) {
       const response = await fetch(
         "https://mikaelalundstrom.github.io/json-data/travel-journal/location-types.json"
       );
+      if (!response.ok) {
+        throw new Error("Something went wrong while fetching location types");
+      }
       const data = await response.json();
       setLocationTypes(data.locationTypes);
     } catch (error) {
@@ -140,7 +143,9 @@ function Form({ entry }: IProps) {
             `https://restcountries.com/v3.1/region/${continent}?fields=name,independent`
           );
         }
-
+        if (!response.ok) {
+          throw new Error("Something went wrong while fetching countries");
+        }
         const data = await response.json();
         const countries = data.map((country: ICountry) => country.name.common).sort();
         console.log(countries);
