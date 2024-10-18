@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ScrollToTopBtn from "./ScrollToTopBtn";
 
+// takes color props to be able to customize it as fit
 interface IProps {
   bgColor: string;
   color: string;

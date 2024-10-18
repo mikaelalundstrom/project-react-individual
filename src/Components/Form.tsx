@@ -19,20 +19,26 @@ interface ICountry {
 }
 
 function Form({ entry }: IProps) {
-  const [locationTypes, setLocationTypes] = useState<string[]>([]);
   const { entries, setEntries } = useContext(EntriesContext);
-  const { setShowMsg } = useContext(ShowMsgContext);
+  const [locationTypes, setLocationTypes] = useState<string[]>([]);
   const [deleteConfirm, setDeleteConfirm] = useState<boolean>(false);
+
+  // For form message
+  const { setShowMsg } = useContext(ShowMsgContext);
   const keepMsgRef = useRef(false);
-  let newIdRef = useRef(0);
   const navigate = useNavigate();
 
+  // Ref for Id for new entry
+  const newIdRef = useRef(0);
+
+  // For image
   const [imgLoaded, setImgLoaded] = useState<boolean>(false);
   const [imgUrl, setImgUrl] = useState<string>("");
   const [imgXValue, setImgXValue] = useState<string>("");
   const [imgYValue, setImgYValue] = useState<string>("");
   const [imgDesktopView, setImgDesktopView] = useState<boolean>(true);
 
+  // For continents/countries
   const [currentContinent, setCurrentContinent] = useState<string>("");
   const [currentCountries, setCurrentCountries] = useState<string[]>([]);
 
@@ -54,6 +60,7 @@ function Form({ entry }: IProps) {
     const date = form.fDate.value;
     const description = form.fDesc.value;
 
+    // update entry
     if (entry) {
       const updatedArr = entries!.map((entryToUpdate) => {
         if (entryToUpdate.id === entry.id) {
@@ -72,9 +79,12 @@ function Form({ entry }: IProps) {
       });
       setShowMsg!(true);
       setEntries!(sortEntriesByDate(updatedArr));
+
+      // new entry
     } else {
       const allIds = entries!.map((entry) => entry.id);
       allIds.sort(sortNumbers);
+      // new entry is the highest existing id number +1
       newIdRef.current = allIds[allIds.length - 1] + 1;
 
       const newEntry: IEntry = {
@@ -95,6 +105,7 @@ function Form({ entry }: IProps) {
       setEntries!(sortEntriesByDate(updatedArr));
       keepMsgRef.current = true;
       setShowMsg!(true);
+      // redirect to the new entry's page
       navigate(`/entry/${newIdRef.current}`);
     }
   };
@@ -113,9 +124,11 @@ function Form({ entry }: IProps) {
     setEntries!(updatedArr);
     keepMsgRef.current = true;
     setShowMsg!(true);
+    // redirect to entries page
     navigate("/entries");
   };
 
+  // get locationTypes from API
   const getLocationTypes = async () => {
     try {
       const response = await fetch(
@@ -131,6 +144,7 @@ function Form({ entry }: IProps) {
     }
   };
 
+  // Get list of countries for each continent from API
   const getCountriesByContinent = async (continent: string) => {
     try {
       if (continent) {
@@ -140,9 +154,7 @@ function Form({ entry }: IProps) {
             `https://restcountries.com/v3.1/subregion/${continent}?fields=name`
           );
         } else {
-          response = await fetch(
-            `https://restcountries.com/v3.1/region/${continent}?fields=name,independent`
-          );
+          response = await fetch(`https://restcountries.com/v3.1/region/${continent}?fields=name`);
         }
         if (!response.ok) {
           throw new Error("Something went wrong while fetching countries");
@@ -157,6 +169,7 @@ function Form({ entry }: IProps) {
   };
 
   useEffect(() => {
+    // update when continent changes
     getCountriesByContinent(currentContinent);
   }, [currentContinent]);
 
@@ -168,6 +181,7 @@ function Form({ entry }: IProps) {
     getLocationTypes();
     setImgLoaded(false);
     if (entry) {
+      // set img if an edit form
       setImgUrl(entry.img);
       setImgXValue(entry.imgPosition!.x);
       setImgYValue(entry.imgPosition!.y);
@@ -179,6 +193,7 @@ function Form({ entry }: IProps) {
 
   useEffect(() => {
     return () => {
+      // only setShowMsg to false if keepMsgRef is false (aka only if no navigate redirect)
       if (!keepMsgRef.current) {
         setShowMsg!(false);
       }

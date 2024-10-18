@@ -20,6 +20,7 @@ export function sortNumbers(a: number, b: number) {
   return a - b;
 }
 
+// Match locationType to the right icon keyword
 export const matchingStamp = (locationType: string) => {
   let icon;
   switch (locationType) {

@@ -24,6 +24,7 @@ function EntriesPage() {
               <h1 className="heading">Journal Entries</h1>
               <EntriesGrid />
             </article>
+            {/* Message to show when entry is newly deleted */}
             <FormMsg message="Entry has been deleted." />
           </div>
         </section>

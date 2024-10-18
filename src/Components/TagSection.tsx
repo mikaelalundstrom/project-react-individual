@@ -10,6 +10,7 @@ function TagSection() {
   const [locationCountries, setLocationCountries] = useState<string[]>([]);
   const { entries } = useContext(EntriesContext);
 
+  // get locationTypes from API
   const getLocationTypes = async () => {
     try {
       const response = await fetch(
@@ -22,17 +23,20 @@ function TagSection() {
     }
   };
 
+  // Get continents and countries
   const getLocationTags = () => {
     const locationContinentsArr: string[] = [];
     const locationCountriesArr: string[] = [];
 
     entries?.forEach((entry) => {
       if (entry.location.continent) {
+        // only add to arr if not included already
         if (!locationContinentsArr.includes(entry.location.continent)) {
           locationContinentsArr.push(entry.location.continent);
         }
       }
       if (entry.location.country) {
+        // only add to arr if not included already
         if (!locationCountriesArr.includes(entry.location.country)) {
           locationCountriesArr.push(entry.location.country);
         }

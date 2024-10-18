@@ -15,6 +15,7 @@ function ScrollToTopBtn({ bgColor, color }: IProps) {
   };
 
   const handleScroll = () => {
+    // don't show when on top of page
     if (document.documentElement.scrollTop > 20) {
       setShowScrollTopBtn(true);
     } else {

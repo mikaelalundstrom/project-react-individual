@@ -11,9 +11,12 @@ function StatisticsSection() {
   const [mostCommonYear, setMostCommonYear] = useState<string>("");
   const [mostCommonType, setMostCommonType] = useState<string>("");
 
+  /* Word & Character count */
+
   const getTotalWordCount = () => {
     let totalWordCount = 0;
     entries?.forEach((entry) => {
+      // split at spaces and do not include empty strings(line breaks, etc)
       let wordCount = entry.description.split(" ").filter((word) => word !== "").length;
       totalWordCount += wordCount;
     });
@@ -28,13 +31,16 @@ function StatisticsSection() {
     return totalCharacters;
   };
 
+  /* Earliest entry */
   const getEarliestEntryDate = () => {
     if (entries) {
-      const date = entries[entries?.length - 1]?.date.replaceAll("-", "/").substring(2);
+      // Get last item of array (since entries are sorted latest first)
+      const date = entries[entries?.length - 1].date.replaceAll("-", "/").substring(2);
       return date;
     }
   };
 
+  /* Continent & Country frequency */
   const getContinentFrequency = () => {
     const continents = entries?.map((entry) => {
       if (entry.location.continent) {
@@ -53,6 +59,7 @@ function StatisticsSection() {
     setCountryCount(countFrequency(countries!.sort()));
   };
 
+  // Count frequency and save it as an obj
   const countFrequency = (array: (string | undefined)[]) => {
     const counts: { [key: string]: number } = {};
     array!.forEach((item) => {
@@ -61,8 +68,10 @@ function StatisticsSection() {
     return counts;
   };
 
+  /* Get most common */
   const getMostCommon = (array: (string | undefined)[]) => {
     return (
+      // sorts so that the most common is last in the array, and pops it
       array!
         .sort(
           (a, b) =>
@@ -72,6 +81,7 @@ function StatisticsSection() {
     );
   };
 
+  // Only call once entries have loaded
   useEffect(() => {
     if (entries) {
       setMostCommonType(
@@ -92,9 +102,10 @@ function StatisticsSection() {
           })
         )
       );
+
+      getContinentFrequency();
+      getCountryFrequency();
     }
-    getContinentFrequency();
-    getCountryFrequency();
   }, [entries]);
 
   return (

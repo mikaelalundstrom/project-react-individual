@@ -20,6 +20,7 @@ function FormSelectInput({
   disabled,
 }: IProps) {
   const [selected, setSelected] = useState<string | undefined>(defaultValue);
+  // to make sure the default value updates properly while still being able to pick a new value
   useEffect(() => {
     setSelected(defaultValue);
   }, [defaultValue]);
