@@ -23,7 +23,7 @@ function Form({ entry }: IProps) {
   const { entries, setEntries } = useContext(EntriesContext);
   const { setShowMsg } = useContext(ShowMsgContext);
   const [deleteConfirm, setDeleteConfirm] = useState<boolean>(false);
-  const deletingEntryRef = useRef(false);
+  const keepMsgRef = useRef(false);
   let newIdRef = useRef(0);
   const navigate = useNavigate();
 
@@ -70,7 +70,7 @@ function Form({ entry }: IProps) {
         }
         return entryToUpdate;
       });
-
+      setShowMsg!(true);
       setEntries!(sortEntriesByDate(updatedArr));
     } else {
       const allIds = entries!.map((entry) => entry.id);
@@ -93,9 +93,10 @@ function Form({ entry }: IProps) {
       };
       const updatedArr = [...entries!, newEntry];
       setEntries!(sortEntriesByDate(updatedArr));
-      form.reset();
+      keepMsgRef.current = true;
+      setShowMsg!(true);
+      navigate(`/entry/${newIdRef.current}`);
     }
-    setShowMsg!(true);
   };
 
   const showConfirmDelete = () => {
@@ -110,7 +111,7 @@ function Form({ entry }: IProps) {
     const entrytoDelete = entry;
     const updatedArr = entries!.filter((entry) => entry.id !== entrytoDelete!.id);
     setEntries!(updatedArr);
-    deletingEntryRef.current = true;
+    keepMsgRef.current = true;
     setShowMsg!(true);
     navigate("/entries");
   };
@@ -148,7 +149,6 @@ function Form({ entry }: IProps) {
         }
         const data = await response.json();
         const countries = data.map((country: ICountry) => country.name.common).sort();
-        console.log(countries);
         setCurrentCountries(countries);
       }
     } catch (error) {
@@ -179,7 +179,7 @@ function Form({ entry }: IProps) {
 
   useEffect(() => {
     return () => {
-      if (!deletingEntryRef.current) {
+      if (!keepMsgRef.current) {
         setShowMsg!(false);
       }
     };
@@ -329,7 +329,7 @@ function Form({ entry }: IProps) {
                   <Button
                     label="Delete"
                     color="var(--color-white)"
-                    bgColor="#E1443A"
+                    bgColor="var(--color-red)"
                     type="button"
                     onClick={handleDelete}
                   />
@@ -354,11 +354,7 @@ function Form({ entry }: IProps) {
           </div>
         )}
       </form>
-      {entry ? (
-        <FormMsg message="Entry Updated." link={`/entry/${entry.id}`} />
-      ) : (
-        <FormMsg message="New entry created." link={`/entry/${newIdRef.current}`} />
-      )}
+      {entry ? <FormMsg message="Entry Updated." link={`/entry/${entry.id}`} /> : null}
     </>
   );
 }

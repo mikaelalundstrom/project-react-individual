@@ -9,7 +9,7 @@
       height: 35rem;
       border: 1rem solid var(--color-black);
       border-radius: var(--border-radius);
-      background-color: #c6cabc;
+      background-color: var(--color-grey);
 
       @media (max-width: 600px) {
         aspect-ratio: 1/1;
@@ -102,22 +102,6 @@
 
     .icon {
       font-size: 3rem;
-    }
-
-    a {
-      font-weight: 600;
-      font-size: 1.25rem;
-      color: var(--color-yellow-light);
-      background-color: var(--color-black);
-      padding: 0.5rem 1.5rem;
-      text-transform: capitalize;
-      border-radius: 5rem;
-
-      transition: 0.3s all;
-
-      &:hover {
-        transform: translateY(-0.5rem);
-      }
     }
   }
 }

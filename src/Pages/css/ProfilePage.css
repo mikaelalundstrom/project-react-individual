@@ -60,15 +60,16 @@ article.profile-section {
           grid-row: 3 / 4;
         }
       }
-
-      &.general::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 0;
-        border-left: dashed 2px var(--color-orange);
+      @media (min-width: 700px) {
+        &.general::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 0;
+          border-left: dashed 2px var(--color-orange);
+        }
       }
 
       h2 {
@@ -102,14 +103,16 @@ article.profile-section {
           grid-row: 4 / 5;
         }
 
-        &:after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 100%;
-          width: 0;
-          border-left: dashed 2px var(--color-orange);
+        @media (min-width: 700px) {
+          &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 0;
+            border-left: dashed 2px var(--color-orange);
+          }
         }
       }
 
@@ -151,246 +154,6 @@ article.profile-section {
         font-size: 4rem;
         line-height: 1;
         transform: translate(0.5rem, 0.5rem);
-      }
-    }
-  }
-}
-
-article.statistics {
-  background-color: var(--color-green-light);
-  padding: 8rem 1rem 12rem;
-
-  .stats-container {
-    margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 2rem;
-
-    a {
-      color: var(--color-black);
-    }
-
-    .stat-item {
-      background-color: var(--color-yellow-light);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      transition: 0.3s all;
-
-      &:hover {
-        transform: translateY(-1rem);
-      }
-    }
-
-    p {
-      font-size: 1.25rem;
-
-      &.big {
-        font-size: 4.5rem;
-        font-weight: 600;
-        line-height: 1;
-      }
-      &.italic {
-        font-family: var(--font-headings);
-        font-weight: 300;
-
-        font-style: italic;
-      }
-
-      .bold {
-        font-weight: 600;
-      }
-    }
-
-    .entries {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-
-      @media (max-width: 1000px) {
-        grid-column: span 2;
-      }
-      @media (max-width: 550px) {
-        grid-column: span 6;
-      }
-    }
-
-    .words {
-      grid-column: span 3;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      background-color: var(--color-black);
-      color: var(--color-white);
-
-      @media (max-width: 1000px) {
-        grid-column: span 4;
-      }
-      @media (max-width: 550px) {
-        grid-column: span 6;
-      }
-
-      p {
-        font-style: italic;
-      }
-    }
-    .date-entry {
-      background-color: var(--color-green);
-      color: var(--color-yellow-light);
-      grid-column: span 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-
-      @media (max-width: 1000px) {
-        grid-column: span 3;
-      }
-
-      @media (max-width: 800px) {
-        grid-column: span 6;
-      }
-    }
-
-    .continents,
-    .countries {
-      background-color: var(--color-white);
-      grid-column: span 3;
-      text-align: center;
-
-      @media (max-width: 800px) {
-        grid-column: span 6;
-      }
-
-      .graph {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-
-        &.horizontal {
-          @media (max-width: 500px) {
-            display: none;
-          }
-        }
-
-        &.vertical {
-          flex-direction: column;
-          display: none;
-
-          @media (max-width: 500px) {
-            display: flex;
-          }
-
-          a {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-          }
-          .graph-item {
-            width: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-
-            .bar {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: flex-start;
-
-              p {
-                padding-left: 0.7rem;
-              }
-            }
-
-            .label {
-              height: auto;
-              width: 6rem;
-              text-align: right;
-            }
-          }
-        }
-
-        a {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-        }
-
-        .graph-item {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          align-items: center;
-          gap: 0.5rem;
-          width: 6rem;
-
-          &:hover .bar {
-            background-color: var(--color-yellow);
-          }
-
-          .bar {
-            width: 2rem;
-            height: 2rem;
-            background-color: var(--color-orange);
-            text-align: center;
-            border-radius: var(--border-radius);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            transition: 0.3s all;
-          }
-
-          .label {
-            height: 2rem;
-            font-size: 0.8rem;
-            text-align: center;
-            line-height: 1.2;
-          }
-        }
-      }
-
-      .graph-label {
-        font-weight: 600;
-        padding-bottom: 2rem;
-      }
-    }
-
-    .countries {
-      grid-column: span 6;
-    }
-
-    .location-type {
-      grid-column: span 3;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: var(--color-yellow);
-
-      @media (max-width: 800px) {
-        grid-column: span 6;
-      }
-
-      figure {
-        font-size: 5rem;
-        line-height: 0;
-      }
-    }
-
-    .year {
-      @media (max-width: 1000px) {
-        grid-column: span 2;
-      }
-      @media (max-width: 550px) {
-        grid-column: span 6;
-      }
-
-      p {
-        line-height: 1.4;
       }
     }
   }

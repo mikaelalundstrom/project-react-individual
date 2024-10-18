@@ -13,12 +13,15 @@ function App() {
 
   const getEntries = async () => {
     let entries = getEntriesFromLS();
+    // Only fetch from API if LS is empty
     if (entries.length === 0) {
       entries = await getEntriesFromAPI();
     }
     console.log(entries);
     setEntries(sortEntriesByDate(entries));
   };
+
+  /* Get entries from API */
 
   const getEntriesFromAPI = async () => {
     try {
@@ -38,19 +41,18 @@ function App() {
     }
   };
 
+  /* LocalStorage */
+
   const getEntriesFromLS = () => {
     return JSON.parse(localStorage.getItem("TJ_entries")!) || [];
   };
-
   const setEntriesInLS = () => {
     localStorage.setItem("TJ_entries", JSON.stringify(entries));
   };
-
   const getProfileFromLS = () => {
     const profile = JSON.parse(localStorage.getItem("TJ_profile")!) || {};
     setProfile(profile);
   };
-
   const setProfileInLS = () => {
     localStorage.setItem("TJ_profile", JSON.stringify(profile));
   };
@@ -60,14 +62,12 @@ function App() {
     getProfileFromLS();
   }, []);
 
+  // Update LS when entries/profile states change
   useEffect(() => {
     setEntriesInLS();
-    console.log("Updated LS (Entries)");
   }, [entries]);
-
   useEffect(() => {
     setProfileInLS();
-    console.log("Updated LS (Profile)");
   }, [profile]);
 
   return (

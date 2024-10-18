@@ -91,7 +91,7 @@ form.form {
         font-style: normal;
       }
       .image-preview-figure {
-        background-color: #c6cabc;
+        background-color: var(--color-grey);
         border-radius: var(--border-radius);
         aspect-ratio: 2/1;
         width: 100%;

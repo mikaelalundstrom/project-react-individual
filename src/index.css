@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap");
 
 /* Component imports*/
-
 @import "./Components/css/Button.css";
 @import "./Components/css/EntriesGrid.css";
 @import "./Components/css/EntryCard.css";
 @import "./Components/css/Footer.css";
 @import "./Components/css/Form.css";
 @import "./Components/css/FormMsg.css";
+@import "./Components/css/Graph.css";
 @import "./Components/css/ScrollToTopBtn.css";
+@import "./Components/css/StatisticsSection.css";
 @import "./Components/css/Header.css";
 @import "./Components/css/Tag.css";
 @import "./Components/css/TagCard.css";
@@ -22,14 +23,18 @@
 @import "./Pages/css/NotfoundPage.css";
 @import "./Pages/css/ProfilePage.css";
 
+/* CSS Variables */
 :root {
   --color-white: #f1f4e6;
+  --color-grey: #c6cabc;
   --color-black: #1e261c;
   --color-green: #75a588;
   --color-green-light: #d0e3cc;
   --color-yellow: #f1d261;
   --color-yellow-light: #f6f6b9;
   --color-orange: #d48a2e;
+  --color-red: #e1443a;
+
   --font-body: "Instrument Sans", sans-serif;
   --font-headings: "Instrument Serif", serif;
   --font-cursive: "Cedarville Cursive", cursive;
@@ -48,6 +53,16 @@ body {
   color: var(--color-black);
 }
 
+.page-container {
+  max-width: 70rem;
+  margin: 0 auto;
+
+  &.small {
+    max-width: 46rem;
+  }
+}
+
+/* Typography */
 a {
   text-decoration: none;
 }
@@ -67,15 +82,6 @@ p {
     @media (max-width: 400px) {
       font-size: 1rem;
     }
-  }
-}
-
-.page-container {
-  max-width: 70rem;
-  margin: 0 auto;
-
-  &.small {
-    max-width: 46rem;
   }
 }
 
@@ -151,6 +157,7 @@ p {
   font-weight: normal;
 }
 
+/* Stamp */
 .stamp {
   width: 9rem;
   height: 10rem;
@@ -173,6 +180,7 @@ p {
   }
 }
 
+/* Animations */
 @keyframes jump {
   from {
     transform: translateY(0rem);

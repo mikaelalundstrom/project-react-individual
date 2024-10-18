@@ -7,7 +7,7 @@ interface IProps {
 
 function Tag({ tag, className }: IProps) {
   return (
-    <Link className={className} to={`/entries/tagged/${encodeURIComponent(tag)}`}>
+    <Link className={`small-tag ${className}`} to={`/entries/tagged/${encodeURIComponent(tag)}`}>
       {tag}
     </Link>
   );

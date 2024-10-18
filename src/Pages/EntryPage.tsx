@@ -2,30 +2,42 @@ import { Link, useParams } from "react-router-dom";
 import Header from "../Components/Header";
 import { useContext, useEffect, useState } from "react";
 import { IEntry } from "../Interfaces";
-import { EntriesContext } from "../Context";
+import { EntriesContext, ShowMsgContext } from "../Context";
 import ImgPlaceholder from "../Components/ImgPlaceholder";
 import { matchingStamp } from "../helpers";
+import FormMsg from "../Components/FormMsg";
+import Tag from "../Components/Tag";
 
 function EntryPage() {
   const { id } = useParams();
   const { entries } = useContext(EntriesContext);
   const [entry, setEntry] = useState<IEntry>();
+  // Used to know when to display placeholder for image
   const [imgLoaded, setImgLoaded] = useState<boolean>(false);
+  const { setShowMsg } = useContext(ShowMsgContext);
 
   const handleOnLoad = () => {
     setImgLoaded(true);
   };
 
-  useEffect(() => {
-    setImgLoaded(false);
-  }, [entry]);
-
   const formatDesc = (desc: string) => {
+    // Split up entry description on line breaks to be able to render as separate paragraphs
     const descParagraphs = desc.split("\n");
     return descParagraphs;
   };
 
   useEffect(() => {
+    return () => {
+      setShowMsg!(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    setImgLoaded(false);
+  }, [entry]);
+
+  useEffect(() => {
+    // Set current entry based on URLParams
     const currentEntry = entries?.find((entry) => entry.id === parseInt(id!));
     setEntry(currentEntry);
   }, [entries]);
@@ -64,6 +76,8 @@ function EntryPage() {
               <h1 className="heading-article">{entry.title}</h1>
               <p className="date article">{entry.date.replaceAll("-", "/")}</p>
             </div>
+            {/* Message to show when entry is newly created */}
+            <FormMsg message="Your entry has been created!" />
           </div>
           <div className="text-body">
             <div className="page-container">
@@ -86,21 +100,9 @@ function EntryPage() {
                     <i className="ph ph-hash"></i>
                   </figure>
                 ) : null}
-                {entry.location.continent ? (
-                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.continent)}`}>
-                    {entry.location.continent}
-                  </Link>
-                ) : null}
-                {entry.location.country ? (
-                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.country)}`}>
-                    {entry.location.country}
-                  </Link>
-                ) : null}
-                {entry.location.type ? (
-                  <Link to={`/entries/tagged/${encodeURIComponent(entry.location.type)}`}>
-                    {entry.location.type}
-                  </Link>
-                ) : null}
+                {entry.location.continent ? <Tag tag={entry.location.continent} /> : null}
+                {entry.location.country ? <Tag tag={entry.location.country} /> : null}
+                {entry.location.type ? <Tag tag={entry.location.type} /> : null}
               </div>
             </div>
           </div>
