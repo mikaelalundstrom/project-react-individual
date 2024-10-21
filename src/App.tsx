@@ -1,15 +1,17 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
-import { IEntry, IProfile } from "./Interfaces";
+import { IEntry, IMessage, IProfile } from "./Interfaces";
 import { EntriesContext, ProfileContext, ShowMsgContext } from "./Context";
 import ScrollTopSwitchPage from "./Components/ScrollTopSwitchPage";
 import { sortEntriesByDate } from "./helpers";
+import Message from "./Components/Message";
 
 function App() {
   const [entries, setEntries] = useState<IEntry[]>([]);
   const [profile, setProfile] = useState<IProfile>({});
   const [showMsg, setShowMsg] = useState<boolean>(false);
+  const [msgContent, setMsgContent] = useState<IMessage>({ message: "" });
 
   const getEntries = async () => {
     let entries = getEntriesFromLS();
@@ -38,6 +40,15 @@ function App() {
       return data.entries;
     } catch (error) {
       console.log(error);
+      if (
+        typeof error === "object" &&
+        error &&
+        "message" in error &&
+        typeof error.message === "string"
+      ) {
+        setShowMsg(true);
+        setMsgContent({ message: error.message });
+      }
     }
   };
 
@@ -60,6 +71,9 @@ function App() {
   useEffect(() => {
     getEntries();
     getProfileFromLS();
+    return () => {
+      setShowMsg!(false);
+    };
   }, []);
 
   // Update LS when entries/profile states change
@@ -75,8 +89,9 @@ function App() {
       <ScrollTopSwitchPage />
       <EntriesContext.Provider value={{ entries, setEntries }}>
         <ProfileContext.Provider value={{ profile, setProfile }}>
-          <ShowMsgContext.Provider value={{ showMsg, setShowMsg }}>
+          <ShowMsgContext.Provider value={{ showMsg, setShowMsg, msgContent, setMsgContent }}>
             <Outlet />
+            <Message />
           </ShowMsgContext.Provider>
         </ProfileContext.Provider>
         <Footer />

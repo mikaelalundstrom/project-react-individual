@@ -4,12 +4,11 @@ import FormTextInput from "./FormTextInput";
 import { EntriesContext, ProfileContext, ShowMsgContext } from "../Context";
 import FormDateInput from "./FormDateInput";
 import Button from "./Button";
-import FormMsg from "./FormMsg";
 
 function FormEditProfile() {
   const { entries } = useContext(EntriesContext);
   const { profile, setProfile } = useContext(ProfileContext);
-  const { setShowMsg } = useContext(ShowMsgContext);
+  const { setShowMsg, setMsgContent } = useContext(ShowMsgContext);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,6 +32,7 @@ function FormEditProfile() {
 
       setProfile!(updatedProfile);
       setShowMsg!(true);
+      setMsgContent!({ message: "Profile Updated!" });
     }
   };
 
@@ -94,7 +94,6 @@ function FormEditProfile() {
           />
         </div>
       </form>
-      <FormMsg message="Profile Updated." link={`/profile`} />
     </>
   );
 }

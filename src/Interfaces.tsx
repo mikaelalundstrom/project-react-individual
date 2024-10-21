@@ -21,3 +21,8 @@ export interface IProfile {
   dreamDestination?: string;
   favoriteEntry?: string;
 }
+
+export interface IMessage {
+  message: string;
+  link?: { link: string; label: string };
+}

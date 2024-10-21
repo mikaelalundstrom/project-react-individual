@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import EntriesGrid from "../Components/EntriesGrid";
-import FormMsg from "../Components/FormMsg";
 import Header from "../Components/Header";
 import { ShowMsgContext } from "../Context";
 import TagSection from "../Components/TagSection";
@@ -24,8 +23,6 @@ function EntriesPage() {
               <h1 className="heading">Journal Entries</h1>
               <EntriesGrid />
             </article>
-            {/* Message to show when entry is newly deleted */}
-            <FormMsg message="Entry has been deleted." />
           </div>
         </section>
         <TagSection />

@@ -5,7 +5,6 @@ import { IEntry } from "../Interfaces";
 import { EntriesContext, ShowMsgContext } from "../Context";
 import ImgPlaceholder from "../Components/ImgPlaceholder";
 import { matchingStamp } from "../helpers";
-import FormMsg from "../Components/FormMsg";
 import Tag from "../Components/Tag";
 
 function EntryPage() {
@@ -76,8 +75,6 @@ function EntryPage() {
               <h1 className="heading-article">{entry.title}</h1>
               <p className="date article">{entry.date.replaceAll("-", "/")}</p>
             </div>
-            {/* Message to show when entry is newly created */}
-            <FormMsg message="Your entry has been created!" />
           </div>
           <div className="text-body">
             <div className="page-container">

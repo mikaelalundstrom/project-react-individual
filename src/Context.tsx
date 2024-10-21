@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IEntry, IProfile } from "./Interfaces";
+import { IEntry, IMessage, IProfile } from "./Interfaces";
 
 // Entries
 export const EntriesContext = createContext<{
@@ -11,6 +11,8 @@ export const EntriesContext = createContext<{
 export const ShowMsgContext = createContext<{
   showMsg?: boolean;
   setShowMsg?: (showMsg: boolean) => void;
+  msgContent?: IMessage;
+  setMsgContent?: (messageContent: IMessage) => void;
 }>({});
 
 // Profile info

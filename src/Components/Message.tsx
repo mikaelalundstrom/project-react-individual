@@ -2,20 +2,17 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShowMsgContext } from "../Context";
 
-interface IProps {
-  message: string;
-  link?: string;
-}
-
-function FormMsg({ message, link }: IProps) {
-  const { showMsg, setShowMsg } = useContext(ShowMsgContext);
+function Message() {
+  const { showMsg, setShowMsg, msgContent } = useContext(ShowMsgContext);
   return (
     <>
       {showMsg ? (
-        <p className="form-msg">
+        <p className="msg">
           <span>
-            {message}
-            {link ? <Link to={link}>See it here.</Link> : null}
+            {msgContent?.message}
+            {msgContent?.link ? (
+              <Link to={msgContent.link.link}>{msgContent.link.label}</Link>
+            ) : null}
           </span>
           <i className="ph ph-x-circle" onClick={() => setShowMsg!(false)}></i>
         </p>
@@ -24,4 +21,4 @@ function FormMsg({ message, link }: IProps) {
   );
 }
 
-export default FormMsg;
+export default Message;

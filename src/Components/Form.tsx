@@ -6,7 +6,6 @@ import { IEntry } from "../Interfaces";
 import { EntriesContext, ShowMsgContext } from "../Context";
 import { useNavigate } from "react-router-dom";
 import { sortEntriesByDate, sortNumbers } from "../helpers";
-import FormMsg from "./FormMsg";
 import FormDateInput from "./FormDateInput";
 import ImgPlaceholder from "./ImgPlaceholder";
 
@@ -24,7 +23,7 @@ function Form({ entry }: IProps) {
   const [deleteConfirm, setDeleteConfirm] = useState<boolean>(false);
 
   // For form message
-  const { setShowMsg } = useContext(ShowMsgContext);
+  const { setShowMsg, setMsgContent } = useContext(ShowMsgContext);
   const keepMsgRef = useRef(false);
   const navigate = useNavigate();
 
@@ -78,6 +77,7 @@ function Form({ entry }: IProps) {
         return entryToUpdate;
       });
       setShowMsg!(true);
+      setMsgContent!({ message: "Entry Updated." });
       setEntries!(sortEntriesByDate(updatedArr));
 
       // new entry
@@ -105,25 +105,30 @@ function Form({ entry }: IProps) {
       setEntries!(sortEntriesByDate(updatedArr));
       keepMsgRef.current = true;
       setShowMsg!(true);
+      setMsgContent!({ message: "New Entry Successfully Created!" });
       // redirect to the new entry's page
       navigate(`/entry/${newIdRef.current}`);
     }
   };
 
+  // show buttons to confirm delete
   const showConfirmDelete = () => {
     setDeleteConfirm(true);
   };
 
+  // hide buttons to confirm delete
   const cancelDelete = () => {
     setDeleteConfirm(false);
   };
 
+  // delete entry
   const handleDelete = () => {
     const entrytoDelete = entry;
     const updatedArr = entries!.filter((entry) => entry.id !== entrytoDelete!.id);
     setEntries!(updatedArr);
     keepMsgRef.current = true;
     setShowMsg!(true);
+    setMsgContent!({ message: "Entry deleted." });
     // redirect to entries page
     navigate("/entries");
   };
@@ -141,6 +146,15 @@ function Form({ entry }: IProps) {
       setLocationTypes(data.locationTypes);
     } catch (error) {
       console.log(error);
+      if (
+        typeof error === "object" &&
+        error &&
+        "message" in error &&
+        typeof error.message === "string"
+      ) {
+        setShowMsg!(true);
+        setMsgContent!({ message: error.message });
+      }
     }
   };
 
@@ -165,6 +179,15 @@ function Form({ entry }: IProps) {
       }
     } catch (error) {
       console.log(error);
+      if (
+        typeof error === "object" &&
+        error &&
+        "message" in error &&
+        typeof error.message === "string"
+      ) {
+        setShowMsg!(true);
+        setMsgContent!({ message: error.message });
+      }
     }
   };
 
@@ -369,7 +392,6 @@ function Form({ entry }: IProps) {
           </div>
         )}
       </form>
-      {entry ? <FormMsg message="Entry Updated." link={`/entry/${entry.id}`} /> : null}
     </>
   );
 }
