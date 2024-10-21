@@ -77,7 +77,10 @@ function Form({ entry }: IProps) {
         return entryToUpdate;
       });
       setShowMsg!(true);
-      setMsgContent!({ message: "Entry Updated." });
+      setMsgContent!({
+        message: "Entry Updated!",
+        link: { link: `/entry/${entry.id}`, label: "See it here." },
+      });
       setEntries!(sortEntriesByDate(updatedArr));
 
       // new entry
@@ -338,7 +341,7 @@ function Form({ entry }: IProps) {
             id="fDesc"
             required
             placeholder="Write something about your journey..."
-            maxLength={20000}
+            maxLength={25000}
             defaultValue={entry?.description}
           ></textarea>
         </div>

@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import FormSelectInput from "./FormSelectInput";
 import FormTextInput from "./FormTextInput";
 import { EntriesContext, ProfileContext, ShowMsgContext } from "../Context";
@@ -9,6 +9,7 @@ function FormEditProfile() {
   const { entries } = useContext(EntriesContext);
   const { profile, setProfile } = useContext(ProfileContext);
   const { setShowMsg, setMsgContent } = useContext(ShowMsgContext);
+  const [resetConfirm, setResetConfirm] = useState<boolean>(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -32,8 +33,41 @@ function FormEditProfile() {
 
       setProfile!(updatedProfile);
       setShowMsg!(true);
-      setMsgContent!({ message: "Profile Updated!" });
+      setMsgContent!({
+        message: "Profile Updated!",
+        link: { link: "/profile", label: "See it here." },
+      });
     }
+  };
+
+  // show buttons to confirm reset
+  const showConfirmReset = () => {
+    setResetConfirm(true);
+  };
+
+  // hide buttons to confirm reset
+  const cancelReset = () => {
+    setResetConfirm(false);
+  };
+
+  // reset prfile
+  const handleReset = () => {
+    const updatedProfile = {
+      name: "",
+      birthday: "",
+      from: "",
+      favoriteDestination: "",
+      dreamDestination: "",
+      favoriteEntry: "",
+    };
+
+    setProfile!(updatedProfile);
+    setShowMsg!(true);
+    setMsgContent!({
+      message: "Profile Reset!",
+      link: { link: "/profile", label: "See it here." },
+    });
+    setResetConfirm(false);
   };
 
   useEffect(() => {
@@ -85,7 +119,37 @@ function FormEditProfile() {
           placeholder="Your dream travel destination..."
           value={profile?.dreamDestination}
         />
-        <div className="span-full new-button">
+        <div className="span-full edit-buttons">
+          <div>
+            {!resetConfirm ? (
+              <Button
+                label="Reset Profile"
+                color="var(--color-white)"
+                bgColor="var(--color-orange)"
+                type="button"
+                onClick={showConfirmReset}
+              />
+            ) : null}
+
+            {resetConfirm ? (
+              <div className="confirm-delete">
+                <Button
+                  label="Cancel"
+                  color="var(--color-black)"
+                  bgColor="var(--color-white)"
+                  type="button"
+                  onClick={cancelReset}
+                />
+                <Button
+                  label="Reset"
+                  color="var(--color-white)"
+                  bgColor="var(--color-red)"
+                  type="button"
+                  onClick={handleReset}
+                />
+              </div>
+            ) : null}
+          </div>
           <Button
             label="Update Profile"
             color="var(--color-white)"

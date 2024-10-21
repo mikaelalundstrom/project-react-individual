@@ -19,7 +19,6 @@ function App() {
     if (entries.length === 0) {
       entries = await getEntriesFromAPI();
     }
-    console.log(entries);
     setEntries(sortEntriesByDate(entries));
   };
 
