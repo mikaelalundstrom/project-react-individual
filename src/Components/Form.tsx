@@ -283,7 +283,7 @@ function Form({ entry }: IProps) {
             options={["Left", "Center", "Right"]}
             defaultValue={entry?.imgPosition?.x}
             setState={setImgXValue}
-            disabled={imgUrl ? false : true}
+            disabled={imgLoaded ? false : true}
           />
           <FormSelectInput
             label="Position Y"
@@ -292,7 +292,7 @@ function Form({ entry }: IProps) {
             options={["Top", "Center", "Bottom"]}
             defaultValue={entry?.imgPosition?.y}
             setState={setImgYValue}
-            disabled={imgUrl ? false : true}
+            disabled={imgLoaded ? false : true}
           />
         </div>
         <div className="span-full">
