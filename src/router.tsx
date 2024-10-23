@@ -12,7 +12,7 @@ import EditProfilePage from "./Pages/EditProfilePage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/project-react-individual/" element={<App />}>
+    <Route path="/" element={<App />}>
       <Route index element={<LandingPage />} />
       <Route path="entries">
         <Route index element={<EntriesPage />} />
@@ -26,5 +26,6 @@ export const router = createBrowserRouter(
 
       <Route path="*" element={<NotfoundPage />} />
     </Route>
-  )
+  ),
+  { basename: "/project-react-individual" }
 );
