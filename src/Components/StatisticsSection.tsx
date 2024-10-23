@@ -33,9 +33,9 @@ function StatisticsSection() {
 
   /* Earliest entry */
   const getEarliestEntryDate = () => {
-    if (entries) {
+    if (entries && entries.length !== 0) {
       // Get last item of array (since entries are sorted latest first)
-      const date = entries[entries?.length - 1].date.replaceAll("-", "/").substring(2);
+      const date = entries[entries!.length - 1].date.replaceAll("-", "/").substring(2);
       return date;
     }
   };
@@ -83,7 +83,7 @@ function StatisticsSection() {
 
   // Only call once entries have loaded
   useEffect(() => {
-    if (entries) {
+    if (entries && entries.length !== 0) {
       setMostCommonType(
         getMostCommon(
           entries

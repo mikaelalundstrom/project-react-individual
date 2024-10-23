@@ -14,15 +14,18 @@ The page was designed with desktop in mind, but is responsive with mobile screen
 
 ## The Entries
 
-About entries...
+The entries consist of three main components: A title, an image and a desription. Every entry also has a date and a location, with more detailed location info being optional. There is a tag system to organize and filter your entries based on either location type, country or continent.
 
 ![Travel Journal](./public/readme2.png)
 
 ## Form to Create, Update & Delete
 
-About form...
+As a user, you are able to update, delete and create new entries as you like. Some fields in the form are requiered, while others are optional. In the form you can also see a preview of the picture you choose for your entry, as well as adjust the positioning of it, and you can toggle between seeing the image crop as it would look in desktop/mobile view.
+
+When creating a new entry, it automatically redirects you to the page of the newly created entry. If you were to delete an entry, you get redirected to the Entries page instead.
 
 ## Profile & Statistics
 
-About profile/stats...
+A profile page exist where the user can enter some personal info, and also see some statistics from their travel journal, such as most common countries or amount of words written.
+
 ![Travel Journal](./public/readme3.png)

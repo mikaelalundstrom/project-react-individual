@@ -1,6 +1,6 @@
 form.form {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
   gap: 2rem;
 
   @media (max-width: 600px) {

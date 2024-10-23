@@ -32,6 +32,7 @@ function FormEditProfile() {
       };
 
       setProfile!(updatedProfile);
+      form.reset();
       setShowMsg!(true);
       setMsgContent!({
         message: "Profile Updated!",
