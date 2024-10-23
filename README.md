@@ -1,5 +1,7 @@
 # Travel Journal - Individual Project React
 
+> [View it here on Github Pages!](https://mikaelalundstrom.github.io/project-react-individual/)
+
 Travel Journal is a personal travel journal/diary, a place to collect and organize journal entries related to your travels.
 
 In the project I am using [my own data sets](https://github.com/mikaelalundstrom/json-data/tree/main/travel-journal) for some default entries and for the different location types. I am also using [REST Countries](https://restcountries.com/#endpoints-region) to get the list of countries for each continent.
